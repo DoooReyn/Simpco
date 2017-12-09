@@ -14,20 +14,22 @@ local ViewBase = class('ViewBase', cc.Node)
 function ViewBase:ctor(identifier)
     self._identifier = identifier
     self:enableNodeEvents()
+end
+
+function ViewBase:init()
+    self:addTextures()
     self:initViewBase()
-    self:bindRender()
     self:addUIEvents()
+    self:bindRender()
 end
 
 ----------------------------------------------------
 -- @desc : 添加UI事件
 --
 function ViewBase:addUIEvents()
-    if not self.events then
-        return
-    end
+    self.events = self.events or {}
     table.foreach(self.events, function(eventName, eventHandler)
-        CGEvent:on(eventName, eventHandler)
+        sEvent:on(eventName, eventHandler)
     end)
 end
 
@@ -36,7 +38,26 @@ end
 --
 function ViewBase:removeUIEvents()
     table.foreach(self.events, function(eventName)
-        CGEvent:off(eventName)
+        sEvent:off(eventName)
+    end)
+end
+
+----------------------------------------------------
+-- @desc : 添加UI用纹理
+--
+function ViewBase:addTextures()
+    self.textures = self.textures or {}
+    table.foreach(self.textures, function(v)
+        display.loadSpriteFrames(sResMgr:get(v))
+    end)
+end
+
+----------------------------------------------------
+-- @desc : 移除UI用纹理
+--
+function ViewBase:removeTextures()
+    table.foreach(self.textures, function(v)
+        display.removeSpriteFrames(sResMgr:get(v))
     end)
 end
 
