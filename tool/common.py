@@ -21,7 +21,7 @@ def walk(root, func):
             func(fp)
 
 def list2lua(s, l):
-    lua = ['\t' * (l - 1) + '{\n']
+    lua = ['\n' + '\t' * (l - 1) + '{\n']
     for v in s:
         if isinstance(v, dict):
             lua.extend(dict2lua(v, l+1))
@@ -33,7 +33,7 @@ def list2lua(s, l):
     return lua
 
 def dict2lua(d, l=1):
-    lua = ['\t' * (l-1) + '{\n']
+    lua = ['\n' + '\t' * (l - 1) + '{\n']
     for k, v in d.iteritems():
         lua.append('\t' * l + "['%s'] = " % k)
         if isinstance(v, dict):
@@ -55,4 +55,3 @@ def dump2lua(v, fp):
         else:
             pass
         f.write(''.join(lua))
-

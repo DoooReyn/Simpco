@@ -15,7 +15,7 @@ def parse(fp):
     base = os.path.basename(fp)
     tear = os.path.splitext(base)
     key  = tear[0]
-    ext  = tear[1]
+    ext  = tear[1][1::]
     val  = common.sub_path(fp, walkdir)
     if not parse_dict.get(ext):
         parse_dict[ext] = {}
