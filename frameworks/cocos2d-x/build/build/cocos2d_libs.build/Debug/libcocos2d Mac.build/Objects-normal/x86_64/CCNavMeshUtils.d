@@ -1,0 +1,37 @@
+dependencies: \
+  /Users/reyn/Project/Gits/cocos/Simpco/frameworks/cocos2d-x/build/../cocos/platform/mac/cocos2d-prefix.pch \
+  /Users/reyn/Project/Gits/cocos/Simpco/frameworks/cocos2d-x/cocos/navmesh/CCNavMeshUtils.cpp \
+  /Users/reyn/Project/Gits/cocos/Simpco/frameworks/cocos2d-x/build/../cocos/navmesh/CCNavMeshUtils.h \
+  /Users/reyn/Project/Gits/cocos/Simpco/frameworks/cocos2d-x/build/../cocos/base/ccConfig.h \
+  /Users/reyn/Project/Gits/cocos/Simpco/frameworks/cocos2d-x/build/../cocos/platform/CCPlatformConfig.h \
+  /Users/reyn/Project/Gits/cocos/Simpco/frameworks/cocos2d-x/build/../cocos/platform/CCPlatformMacros.h \
+  /Users/reyn/Project/Gits/cocos/Simpco/frameworks/cocos2d-x/build/../cocos/platform/CCPlatformDefine.h \
+  /Users/reyn/Project/Gits/cocos/Simpco/frameworks/cocos2d-x/build/../cocos/platform/mac/CCPlatformDefine-mac.h \
+  /Users/reyn/Project/Gits/cocos/Simpco/frameworks/cocos2d-x/build/../cocos/math/CCMath.h \
+  /Users/reyn/Project/Gits/cocos/Simpco/frameworks/cocos2d-x/build/../cocos/math/Vec2.h \
+  /Users/reyn/Project/Gits/cocos/Simpco/frameworks/cocos2d-x/build/../cocos/math/CCMathBase.h \
+  /Users/reyn/Project/Gits/cocos/Simpco/frameworks/cocos2d-x/build/../cocos/math/Vec2.inl \
+  /Users/reyn/Project/Gits/cocos/Simpco/frameworks/cocos2d-x/build/../cocos/math/Vec3.h \
+  /Users/reyn/Project/Gits/cocos/Simpco/frameworks/cocos2d-x/build/../cocos/math/Vec3.inl \
+  /Users/reyn/Project/Gits/cocos/Simpco/frameworks/cocos2d-x/build/../cocos/math/Mat4.h \
+  /Users/reyn/Project/Gits/cocos/Simpco/frameworks/cocos2d-x/build/../cocos/base/ccMacros.h \
+  /Users/reyn/Project/Gits/cocos/Simpco/frameworks/cocos2d-x/build/../cocos/base/CCConsole.h \
+  /Users/reyn/Project/Gits/cocos/Simpco/frameworks/cocos2d-x/build/../cocos/base/CCRef.h \
+  /Users/reyn/Project/Gits/cocos/Simpco/frameworks/cocos2d-x/build/../cocos/platform/CCStdC.h \
+  /Users/reyn/Project/Gits/cocos/Simpco/frameworks/cocos2d-x/build/../cocos/platform/mac/CCStdC-mac.h \
+  /Users/reyn/Project/Gits/cocos/Simpco/frameworks/cocos2d-x/build/../cocos/base/ccRandom.h \
+  /Users/reyn/Project/Gits/cocos/Simpco/frameworks/cocos2d-x/build/../cocos/math/Vec4.h \
+  /Users/reyn/Project/Gits/cocos/Simpco/frameworks/cocos2d-x/build/../cocos/math/Vec4.inl \
+  /Users/reyn/Project/Gits/cocos/Simpco/frameworks/cocos2d-x/build/../cocos/math/Mat4.inl \
+  /Users/reyn/Project/Gits/cocos/Simpco/frameworks/cocos2d-x/build/../cocos/math/Quaternion.h \
+  /Users/reyn/Project/Gits/cocos/Simpco/frameworks/cocos2d-x/build/../cocos/math/Quaternion.inl \
+  /Users/reyn/Project/Gits/cocos/Simpco/frameworks/cocos2d-x/build/../external/recast/Detour/DetourCommon.h \
+  /Users/reyn/Project/Gits/cocos/Simpco/frameworks/cocos2d-x/build/../external/recast/Detour/DetourMath.h \
+  /Users/reyn/Project/Gits/cocos/Simpco/frameworks/cocos2d-x/build/../external/recast/Detour/DetourNavMesh.h \
+  /Users/reyn/Project/Gits/cocos/Simpco/frameworks/cocos2d-x/build/../external/recast/Detour/DetourAlloc.h \
+  /Users/reyn/Project/Gits/cocos/Simpco/frameworks/cocos2d-x/build/../external/recast/Detour/DetourStatus.h \
+  /Users/reyn/Project/Gits/cocos/Simpco/frameworks/cocos2d-x/build/../external/recast/Detour/DetourNavMeshQuery.h \
+  /Users/reyn/Project/Gits/cocos/Simpco/frameworks/cocos2d-x/build/../external/recast/DetourTileCache/DetourTileCache.h \
+  /Users/reyn/Project/Gits/cocos/Simpco/frameworks/cocos2d-x/build/../external/recast/DetourTileCache/DetourTileCacheBuilder.h \
+  /Users/reyn/Project/Gits/cocos/Simpco/frameworks/cocos2d-x/build/../external/recast/Detour/DetourNavMeshBuilder.h \
+  /Users/reyn/Project/Gits/cocos/Simpco/frameworks/cocos2d-x/build/../external/recast/fastlz/fastlz.h
