@@ -1,7 +1,7 @@
-local RenderMgr = class('RenderMgr', require('app.manager.MgrBase'))
+local RenderMod = class('RenderMod', require('app.module.ModBase'))
 
-function RenderMgr:ctor()
-    RenderMgr.super:ctor(self)
+function RenderMod:ctor()
+    RenderMod.super:ctor(self)
 end
 
-return RenderMgr
+return RenderMod

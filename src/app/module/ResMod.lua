@@ -1,7 +1,7 @@
-local ResMgr = class('ResMgr', require('app.manager.MgrBase'))
+local ResMod = class('ResMod', require('app.module.ModBase'))
 
-function ResMgr:ctor()
-    ResMgr.super:ctor(self)
+function ResMod:ctor()
+    ResMod.super:ctor(self)
 end
 
-return ResMgr
+return ResMod

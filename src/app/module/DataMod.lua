@@ -1,7 +1,7 @@
-local DataMgr = class('DataMgr', require('app.manager.MgrBase'))
+local DataMod = class('DataMod', require('app.module.ModBase'))
 
-function DataMgr:ctor()
-    DataMgr.super:ctor(self)
+function DataMod:ctor()
+    DataMod.super:ctor(self)
 end
 
-return DataMgr
+return DataMod

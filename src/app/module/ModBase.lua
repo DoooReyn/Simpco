@@ -1,37 +1,37 @@
-local MgrBase = class('MgrBase')
+local ModBase = class('ModBase')
 
-function MgrBase:ctor(child)
+function ModBase:ctor(child)
     self._identifier = child.__cname or 'Unknown'
     self:mount()
 end
 
-function MgrBase:getID()
+function ModBase:getID()
     return self._identifier
 end
 
-function MgrBase:mount()
+function ModBase:mount()
     Game.Modules[self._identifier] = self
 end
 
-function MgrBase:unmount()
+function ModBase:unmount()
     self:cleanup()
     Game.Modules[self._identifier] = nil
 end
 
-function MgrBase:load()
+function ModBase:load()
 
 end
 
-function MgrBase:reload()
+function ModBase:reload()
 
 end
 
-function MgrBase:cleaunp()
+function ModBase:cleaunp()
     -- do cleanup work
 end
 
-function MgrBase:console()
+function ModBase:console()
     -- do console work
 end
 
-return MgrBase
+return ModBase

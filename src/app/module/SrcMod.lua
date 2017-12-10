@@ -1,7 +1,7 @@
-local SrcMgr = class('SrcMgr', require('app.manager.MgrBase'))
+local SrcMod = class('SrcMod', require('app.module.ModBase'))
 
-function SrcMgr:ctor()
-    SrcMgr.super:ctor(self)
+function SrcMod:ctor()
+    SrcMod.super:ctor(self)
 end
 
-return SrcMgr
+return SrcMod
