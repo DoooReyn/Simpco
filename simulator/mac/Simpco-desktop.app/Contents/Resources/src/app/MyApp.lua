@@ -1,19 +1,48 @@
 
+local strfmt, mkseed, ostime = string.format, math.randomseed, os.time
 local MyApp  = class("MyApp")
-local strfmt = string.format
-local mkseed = math.randomseed
-local ostime = os.time
-local tloop  = table.foreach
 
 function MyApp:ctor()
     mkseed(ostime())
-    self._appvars = {}
-    self._modules = {}
+    cc.exports.Game = {}
     self:init()
 end
 
 function MyApp:init()
-    print('aaa')
+    self:loadAppVars()
+    self:loadUtils()
+    self:loadModules()
+end
+
+function MyApp:loadUtils()
+    -- extend
+    require('app.utils.extend.TableExt')
+    -- require('app.utils.extend.NumberExt')
+    -- require('app.utils.extend.StringExt')
+
+
+
+    -- Console
+    Game.Environment = require('app.utils.console.Environment')
+    Game.Console     = require('app.utils.console.Console')
+    Game.Environment:console()
+    Game.Console.log('console.log')
+    Game.Console.err('console.err')
+    Game.Console.warn('console.warn')
+    
+    -- eventcenter
+    Game.EventCenter = require('app.utils.event.EventCenter').new()
+    
+    -- libs
+
+end
+
+function MyApp:loadModules()
+
+end
+
+function MyApp:loadAppVars()
+    
 end
 
 function MyApp:console()
