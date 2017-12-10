@@ -23,6 +23,7 @@ function MyApp:loadUtils()
     require('app.utils.extend.TableExt')
     -- require('app.utils.extend.NumberExt')
     -- require('app.utils.extend.StringExt')
+    Game.SecurityNumber = require('app.utils.extend.SecurityNumber')
 
     -- Console
     Game.Environment = require('app.utils.console.Environment')

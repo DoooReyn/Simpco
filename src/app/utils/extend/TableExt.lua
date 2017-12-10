@@ -52,3 +52,17 @@ function table.has(t, val)
         return v == val
     end)
 end
+
+----------------------------------------------------
+-- @desc : 随机表中的一个数值
+-- @param : t - 表
+--
+local mrandom = math.random
+function table.irandom(t)
+    return t[mrandom(1, #t)]
+end
+function table.random(t)
+    local keys = table.keys(t)
+    local key1 = keys[mrandom(1, #keys)]
+    return t[key1]
+end
