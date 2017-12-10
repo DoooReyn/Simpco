@@ -1,21 +1,24 @@
 local ModBase = class('ModBase')
 
-function ModBase:ctor(child)
-    self._identifier = child.__cname or 'Unknown'
+function ModBase:ctor()
     self:mount()
 end
 
 function ModBase:getID()
-    return self._identifier
+    return self.__cname
 end
 
 function ModBase:mount()
-    Game.Modules[self._identifier] = self
+    local mod = Game.Modules[self.__cname]
+    if mod then 
+        mod:unmount() 
+    end
+    Game.Modules[self.__cname] = self
 end
 
 function ModBase:unmount()
     self:cleanup()
-    Game.Modules[self._identifier] = nil
+    Game.Modules[self.__cname] = nil
 end
 
 function ModBase:load()

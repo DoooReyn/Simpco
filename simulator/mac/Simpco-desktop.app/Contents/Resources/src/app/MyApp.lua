@@ -23,6 +23,7 @@ function MyApp:loadUtils()
     require('app.utils.extend.TableExt')
     -- require('app.utils.extend.NumberExt')
     -- require('app.utils.extend.StringExt')
+    Game.SecurityNumber = require('app.utils.extend.SecurityNumber')
 
     -- Console
     Game.Environment = require('app.utils.console.Environment')
@@ -37,11 +38,11 @@ end
 
 function MyApp:loadModules()
     Game.Modules = {}
-    require('app.module.ResMod').new()
-    require('app.module.SrcMod').new()
-    require('app.module.DataMod').new()
-    require('app.module.RenderMod').new()
-    require('app.module.ViewMod').new()
+    require('app.module.ResMod'):create()
+    require('app.module.SrcMod'):create()
+    require('app.module.DataMod'):create('DataMod')
+    require('app.module.RenderMod'):create('RenderMod')
+    require('app.module.ViewMod'):create('VerMod')
 end
 
 function MyApp:loadAppVars()
