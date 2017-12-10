@@ -8,10 +8,6 @@ function MyApp:ctor()
         AppVars = {},
         Modules = {},
     }
-    self:init()
-end
-
-function MyApp:init()
     self:loadAppVars()
     self:loadUtils()
     self:loadModules()

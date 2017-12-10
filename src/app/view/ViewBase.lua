@@ -11,12 +11,22 @@ local ViewBase = class('ViewBase', cc.Node)
 -- @desc : 构造
 -- @param : identifier - 唯一标识符
 --
-function ViewBase:ctor(identifier)
-    self._identifier = identifier
-    self:enableNodeEvents()
+function ViewBase:ctor(vars)
+    if vars and type(vars) == 'table' then 
+        self._vars = vars 
+    end
+    self:init()
+end
+
+function ViewBase:getVar(var)
+    if not self._vars then
+        return nil
+    end
+    return self._vars[var]
 end
 
 function ViewBase:init()
+    self:enableNodeEvents()
     self:addTextures()
     self:initViewBase()
     self:addUIEvents()
@@ -27,7 +37,7 @@ end
 -- @desc : 添加UI事件
 --
 function ViewBase:addUIEvents()
-    self.events = self.events or {}
+    if not self.events then return end
     table.foreach(self.events, function(eventName, eventHandler)
         sEvent:on(eventName, eventHandler)
     end)
@@ -37,6 +47,7 @@ end
 -- @desc : 移除UI事件
 --
 function ViewBase:removeUIEvents()
+    if not self.events then return end
     table.foreach(self.events, function(eventName)
         sEvent:off(eventName)
     end)
@@ -46,7 +57,7 @@ end
 -- @desc : 添加UI用纹理
 --
 function ViewBase:addTextures()
-    self.textures = self.textures or {}
+    if not self.textures then return end
     table.foreach(self.textures, function(v)
         display.loadSpriteFrames(sResMgr:get(v))
     end)
@@ -56,6 +67,7 @@ end
 -- @desc : 移除UI用纹理
 --
 function ViewBase:removeTextures()
+    if not self.textures then return end
     table.foreach(self.textures, function(v)
         display.removeSpriteFrames(sResMgr:get(v))
     end)
@@ -97,6 +109,13 @@ end
 -- @desc : 绑定视图渲染器
 --
 function ViewBase:bindRender()
+
+end
+
+----------------------------------------------------
+-- @desc : 解绑视图渲染器
+--
+function ViewBase:unbindRender()
 
 end
 
