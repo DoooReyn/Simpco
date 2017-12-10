@@ -40,9 +40,9 @@ function MyApp:loadModules()
     Game.Modules = {}
     require('app.module.ResMod'):create()
     require('app.module.SrcMod'):create()
-    require('app.module.DataMod'):create('DataMod')
-    require('app.module.RenderMod'):create('RenderMod')
-    require('app.module.ViewMod'):create('VerMod')
+    require('app.module.DataMod'):create()
+    require('app.module.RenderMod'):create()
+    require('app.module.ViewMod'):create()
 end
 
 function MyApp:loadAppVars()
