@@ -12,6 +12,11 @@ function MyApp:init()
     self:loadAppVars()
     self:loadUtils()
     self:loadModules()
+    self:console()
+end
+
+function MyApp:console()
+    Game.Environment:console()
 end
 
 function MyApp:loadUtils()
@@ -20,15 +25,9 @@ function MyApp:loadUtils()
     -- require('app.utils.extend.NumberExt')
     -- require('app.utils.extend.StringExt')
 
-
-
     -- Console
     Game.Environment = require('app.utils.console.Environment')
     Game.Console     = require('app.utils.console.Console')
-    Game.Environment:console()
-    Game.Console.log('console.log')
-    Game.Console.err('console.err')
-    Game.Console.warn('console.warn')
     
     -- eventcenter
     Game.EventCenter = require('app.utils.event.EventCenter').new()

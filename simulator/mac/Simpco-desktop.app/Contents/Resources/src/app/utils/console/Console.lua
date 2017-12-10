@@ -64,31 +64,38 @@ local function console()
             end
         end,
         console = function()
-            print(table.concat(st, '\n'))
+            local s = table.concat(st, '\n')
+            print(s)
+            return s
         end
     }
 end
+
+local Log = require('app.utils.console.Log')
 
 return {
     log  = function(fmt, ...)
         local c = console()
         c.add('\n++++ Console.Log ++++')
+        c.add(os.date('%Y-%m-%d %H:%M:%S', os.time()))
         c.add('  '..fmt, ...)
         c.add('---- Console.Log ----\n')
-        c.console()
+        Log.save(c.console())
     end,
     err  = function(fmt, ...)
         local c = console()
         c.add('\n++++ Console.Err ++++')
+        c.add(os.date('%Y-%m-%d %H:%M:%S', os.time()))
         c.add('  '..fmt, ...)
         c.add('---- Console.Err ----\n')
-        c.console()
+        Log.save(c.console())
     end,
     warn = function(fmt, ...)
         local c = console()
         c.add('\n++++ Console.Warn ++++')
+        c.add(os.date('%Y-%m-%d %H:%M:%S', os.time()))
         c.add('  '..fmt, ...)
         c.add('---- Console.Warn ----\n')
-        c.console()
+        Log.save(c.console())
     end
 }
