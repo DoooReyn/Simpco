@@ -1,8 +1,8 @@
 local MgrBase = class('MgrBase')
 
-function MgrBase:ctor(identifier)
-    self._identifier = identifier
-    self:registerApp()
+function MgrBase:ctor(child)
+    self._identifier = child.__cname or 'Unknown'
+    self:mount()
 end
 
 function MgrBase:getID()
@@ -10,10 +10,23 @@ function MgrBase:getID()
 end
 
 function MgrBase:mount()
-    sApp:mountModule(self)
+    Game.Modules[self._identifier] = self
 end
 
 function MgrBase:unmount()
+    self:cleanup()
+    Game.Modules[self._identifier] = nil
+end
+
+function MgrBase:load()
+
+end
+
+function MgrBase:reload()
+
+end
+
+function MgrBase:cleaunp()
     -- do cleanup work
 end
 

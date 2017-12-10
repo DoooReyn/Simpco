@@ -12,7 +12,6 @@ function MyApp:init()
     self:loadAppVars()
     self:loadUtils()
     self:loadModules()
-    self:console()
 end
 
 function MyApp:console()
@@ -37,7 +36,12 @@ function MyApp:loadUtils()
 end
 
 function MyApp:loadModules()
-
+    Game.Modules = {}
+    require('app.manager.ResMgr').new()
+    -- require('app.manager.SrcMgr').new()
+    require('app.manager.DataMgr').new()
+    require('app.manager.RenderMgr').new()
+    require('app.manager.ViewMgr').new()
 end
 
 function MyApp:loadAppVars()
@@ -45,29 +49,13 @@ function MyApp:loadAppVars()
 end
 
 function MyApp:console()
-    tloop(self._appvars, function(v,k)
-        print(strfmt('[App] appvar : %s => %s', k, tostring(v)))
+    table.foreach(Game.Modules, function(_,k)
+        print('[Game] module : ' .. k)
     end)
-    tloop(self._modules, function(_,k)
-        print('[App] module : ' .. k)
-    end)
-end
-
-function MyApp:mountModule(mod)
-    self._modules[mod:getID()] = mod
-end
-
-function MyApp:fetchModule(modId)
-    return self._modules[modId]
-end
-
-function MyApp:unmountModule(modId)
-    self._modules[modId]:unmount()
-    self._modules[modId] = nil
 end
 
 function MyApp:run()
-    
+    self:console()
 end
 
 function MyApp:reset()
