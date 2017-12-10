@@ -1,18 +1,13 @@
 local Environment = {}
 local strfmt = string.format
-local __EnvParams__ = {
-    console = {
-        debug  = true,
-        release = false
-    }
-}
+local __EnvParams__ = require('app.data.const.EnvConst')
 
 function Environment:isDebug()
     return DEBUG ~= 0
 end
 
 function Environment:isRelease()
-    return DEBUG - 0
+    return DEBUG == 0
 end
 
 function Environment:getEnviroment()
