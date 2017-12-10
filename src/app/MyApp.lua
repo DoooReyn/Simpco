@@ -37,11 +37,11 @@ end
 
 function MyApp:loadModules()
     Game.Modules = {}
-    require('app.module.ResMgr').new()
-    require('app.module.SrcMgr').new()
-    require('app.module.DataMgr').new()
-    require('app.module.RenderMgr').new()
-    require('app.module.ViewMgr').new()
+    require('app.module.ResMod').new()
+    require('app.module.SrcMod').new()
+    require('app.module.DataMod').new()
+    require('app.module.RenderMod').new()
+    require('app.module.ViewMod').new()
 end
 
 function MyApp:loadAppVars()
