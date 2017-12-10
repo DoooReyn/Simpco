@@ -38,7 +38,7 @@ end
 function MyApp:loadModules()
     Game.Modules = {}
     require('app.manager.ResMgr').new()
-    -- require('app.manager.SrcMgr').new()
+    require('app.manager.SrcMgr').new()
     require('app.manager.DataMgr').new()
     require('app.manager.RenderMgr').new()
     require('app.manager.ViewMgr').new()
