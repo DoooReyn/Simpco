@@ -71,6 +71,7 @@ end
 
 return {
     log  = function(fmt, ...)
+        if not __stdout() then return end
         local c = console()
         c.add('\n++++ Console.Log ++++')
         c.add('  '..fmt, ...)
@@ -78,6 +79,7 @@ return {
         c.console()
     end,
     err  = function(fmt, ...)
+        if not __stdout() then return end
         local c = console()
         c.add('\n++++ Console.Err ++++')
         c.add('  '..fmt, ...)
@@ -85,6 +87,7 @@ return {
         c.console()
     end,
     warn = function(fmt, ...)
+        if not __stdout() then return end
         local c = console()
         c.add('\n++++ Console.Warn ++++')
         c.add('  '..fmt, ...)
