@@ -1,3 +1,7 @@
+
+local strfmt = string.format
+
+
 local _M = class('ViewCore')
 
 function _M:ctor()
@@ -9,6 +13,7 @@ function _M:load()
 end
 
 function _M:loadView(vtag, ...)
+    if not vtag then return nil end
     if not self._views[vtag] then
         self._views[vtag] = require(strfmt('app.views.%s'), vtag):create(...)
     end
