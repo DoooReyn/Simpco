@@ -20,6 +20,9 @@ function ViewBase:ctor(vars)
     self:loadViewBase()
 end
 
+----------------------------------------------------
+-- @desc : 获取传入视图的参数
+--
 function ViewBase:getVar(var)
     if not self._vars then
         return nil
@@ -27,6 +30,9 @@ function ViewBase:getVar(var)
     return self._vars[var]
 end
 
+----------------------------------------------------
+-- @desc : 加载视图基础
+--
 function ViewBase:loadViewBase()
     self:enableNodeEvents()
     self:addTextures()
