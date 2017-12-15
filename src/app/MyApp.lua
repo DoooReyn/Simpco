@@ -18,7 +18,7 @@ function MyApp:console()
 end
 
 function MyApp:loadAppVars()
-    
+
 end
 
 function MyApp:loadUtils()
@@ -45,6 +45,7 @@ function MyApp:loadModules()
     require('app.module.DataMod'):create()
     require('app.module.RenderMod'):create()
     require('app.module.ViewMod'):create()
+    require('app.module.SoundMod'):create()
 end
 
 function MyApp:console()

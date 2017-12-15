@@ -50,6 +50,9 @@
 		5200BECA1A53D9A500AC45E4 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5200BEC91A53D9A500AC45E4 /* Security.framework */; };
 		521A8E7019F0C3D200D177D7 /* Default-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 521A8E6E19F0C3D200D177D7 /* Default-667h@2x.png */; };
 		521A8E7119F0C3D200D177D7 /* Default-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 521A8E6F19F0C3D200D177D7 /* Default-736h@3x.png */; };
+		778B77651FE1754B004CC3D3 /* Recorder-ios.m in Sources */ = {isa = PBXBuildFile; fileRef = 778B77641FE1754B004CC3D3 /* Recorder-ios.m */; };
+		778B776C1FE18F1C004CC3D3 /* lua_recorder_auto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 778B776A1FE18F1C004CC3D3 /* lua_recorder_auto.cpp */; };
+		778B776E1FE194E3004CC3D3 /* Recorder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 778B776D1FE194E3004CC3D3 /* Recorder.cpp */; };
 		9FA3AE4E1BE9BCC900FC9645 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FA3AE4D1BE9BCC900FC9645 /* CFNetwork.framework */; };
 		9FF504841A5E87B100AFDA55 /* ConsoleWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FF504811A5E87B100AFDA55 /* ConsoleWindow.xib */; };
 		9FF504851A5E87B100AFDA55 /* ConsoleWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF504831A5E87B100AFDA55 /* ConsoleWindowController.m */; };
@@ -126,6 +129,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = A07A4C241783777C0073F6A7;
 			remoteInfo = "libcocos2d iOS";
+		};
+		778B775A1FE17399004CC3D3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 15A8A4031834BDA200142BE0 /* cocos2d_libs.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 507B40FD1C31BDD30067B53E;
+			remoteInfo = "libcocos2d tvOS";
+		};
+		778B775D1FE17399004CC3D3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C03781AE18BF654500FE4F13 /* cocos2d_lua_bindings.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 507B43531C31FA0C0067B53E;
+			remoteInfo = "libluacocos2d tvOS";
 		};
 		9FEE0E431A5FC95000FEA1B0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -207,6 +224,12 @@
 		5200BEC91A53D9A500AC45E4 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		521A8E6E19F0C3D200D177D7 /* Default-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-667h@2x.png"; sourceTree = "<group>"; };
 		521A8E6F19F0C3D200D177D7 /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
+		778B77641FE1754B004CC3D3 /* Recorder-ios.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Recorder-ios.m"; sourceTree = "<group>"; };
+		778B77661FE1755F004CC3D3 /* Recorder-ios.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Recorder-ios.h"; sourceTree = "<group>"; };
+		778B77671FE176FB004CC3D3 /* Recorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Recorder.h; path = ../Classes/Recorder/Recorder.h; sourceTree = "<group>"; };
+		778B776A1FE18F1C004CC3D3 /* lua_recorder_auto.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = lua_recorder_auto.cpp; path = ../Classes/Recorder/lua_recorder_auto.cpp; sourceTree = "<group>"; };
+		778B776B1FE18F1C004CC3D3 /* lua_recorder_auto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = lua_recorder_auto.h; path = ../Classes/Recorder/lua_recorder_auto.h; sourceTree = "<group>"; };
+		778B776D1FE194E3004CC3D3 /* Recorder.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Recorder.cpp; path = ../Classes/Recorder/Recorder.cpp; sourceTree = "<group>"; };
 		9FA3AE4D1BE9BCC900FC9645 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
 		9FF504781A5E86D600AFDA55 /* libsimulator.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libsimulator.xcodeproj; path = "../../cocos2d-x/tools/simulator/libsimulator/proj.ios_mac/libsimulator.xcodeproj"; sourceTree = "<group>"; };
 		9FF504811A5E87B100AFDA55 /* ConsoleWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConsoleWindow.xib; sourceTree = "<group>"; };
@@ -294,6 +317,7 @@
 			children = (
 				15A8A4171834BDA200142BE0 /* libcocos2d Mac.a */,
 				15A8A4251834BDA200142BE0 /* libcocos2d iOS.a */,
+				778B775B1FE17399004CC3D3 /* libcocos2d tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -355,6 +379,55 @@
 			name = Icons;
 			sourceTree = "<group>";
 		};
+		778B775F1FE174B1004CC3D3 /* Recorder */ = {
+			isa = PBXGroup;
+			children = (
+				778B77611FE17514004CC3D3 /* android */,
+				778B77631FE17515004CC3D3 /* ios */,
+				778B77601FE17514004CC3D3 /* mac */,
+				778B77621FE17515004CC3D3 /* win */,
+				778B77671FE176FB004CC3D3 /* Recorder.h */,
+				778B776D1FE194E3004CC3D3 /* Recorder.cpp */,
+				778B776B1FE18F1C004CC3D3 /* lua_recorder_auto.h */,
+				778B776A1FE18F1C004CC3D3 /* lua_recorder_auto.cpp */,
+			);
+			name = Recorder;
+			sourceTree = "<group>";
+		};
+		778B77601FE17514004CC3D3 /* mac */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = mac;
+			path = ../Classes/Recorder/mac;
+			sourceTree = "<group>";
+		};
+		778B77611FE17514004CC3D3 /* android */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = android;
+			path = ../Classes/Recorder/android;
+			sourceTree = "<group>";
+		};
+		778B77621FE17515004CC3D3 /* win */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = win;
+			path = ../Classes/Recorder/win;
+			sourceTree = "<group>";
+		};
+		778B77631FE17515004CC3D3 /* ios */ = {
+			isa = PBXGroup;
+			children = (
+				778B77641FE1754B004CC3D3 /* Recorder-ios.m */,
+				778B77661FE1755F004CC3D3 /* Recorder-ios.h */,
+			);
+			name = ios;
+			path = ../Classes/Recorder/ios;
+			sourceTree = "<group>";
+		};
 		9FF504791A5E86D600AFDA55 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -369,6 +442,7 @@
 			children = (
 				15427CC2198F220600DC375D /* libluacocos2d Mac.a */,
 				15427CD2198F220600DC375D /* libluacocos2d iOS.a */,
+				778B775E1FE17399004CC3D3 /* libluacocos2d tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -431,6 +505,7 @@
 		F293BB7C15EB830F00256477 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				778B775F1FE174B1004CC3D3 /* Recorder */,
 				15427CE2198F237300DC375D /* lua_module_register.h */,
 				F293BB7E15EB831F00256477 /* AppDelegate.cpp */,
 				F293BB7F15EB831F00256477 /* AppDelegate.h */,
@@ -565,6 +640,20 @@
 			remoteRef = 15A8A4241834BDA200142BE0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		778B775B1FE17399004CC3D3 /* libcocos2d tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libcocos2d tvOS.a";
+			remoteRef = 778B775A1FE17399004CC3D3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		778B775E1FE17399004CC3D3 /* libluacocos2d tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libluacocos2d tvOS.a";
+			remoteRef = 778B775D1FE17399004CC3D3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		9FF5047E1A5E86D600AFDA55 /* libsimulator Mac.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -657,10 +746,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				778B77651FE1754B004CC3D3 /* Recorder-ios.m in Sources */,
 				5023812517EBBCAC00990C9B /* RootViewController.mm in Sources */,
 				F293BB9C15EB831F00256477 /* AppDelegate.cpp in Sources */,
+				778B776E1FE194E3004CC3D3 /* Recorder.cpp in Sources */,
 				5023812417EBBCAC00990C9B /* main.m in Sources */,
 				5023811817EBBCAC00990C9B /* AppController.mm in Sources */,
+				778B776C1FE18F1C004CC3D3 /* lua_recorder_auto.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

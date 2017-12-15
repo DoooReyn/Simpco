@@ -102,7 +102,9 @@ end
 -- @desc : 初始化视图
 --
 function ViewBase:initViewBase()
-
+    printInfo("[UIBase] loadCsb '%s'", self.__cname)
+    self.rootNode = Game.CacheMod.CsbCache:get(self.__cname, true)
+    self:addChild(self.rootNode)
 end
 
 ----------------------------------------------------
@@ -138,6 +140,42 @@ end
 --
 function ViewBase:reloadView()
 
+end
+
+--加载UI屏蔽层，默认屏蔽下层
+function ViewBase:maskTouch(sTag)
+    local function onTouchBegan(touch, event)
+        if self.onTouchBegan then
+            self:onTouchBegan(touch, event)
+        end
+        return true
+    end
+
+    local function onTouchMoved(touch,event)
+        if self.onTouchMoved then
+            self:onTouchMoved(touch,event)
+        end
+    end
+
+    local function onTouchEnded(touch,event)
+        if self.onTouchEnded then
+            self:onTouchEnded(touch,event)
+        end
+    end
+
+    local function onTouchCancelled(touch,event)
+        if self.onTouchCancelled then
+            self:onTouchCancelled(touch,event)
+        end
+    end
+
+    self.touchListener = cc.EventListenerTouchOneByOne:create()
+    self.listener:setSwallowTouches(Game.Modules.DataMod.Constant.ViewConst[self.__cname] or false)
+    self.touchListener:registerScriptHandler(onTouchBegan, cc.Handler.EVENT_TOUCH_BEGAN)
+    self.touchListener:registerScriptHandler(onTouchMoved, cc.Handler.EVENT_TOUCH_MOVED)
+    self.touchListener:registerScriptHandler(onTouchEnded, cc.Handler.EVENT_TOUCH_ENDED)
+    self.touchListener:registerScriptHandler(onTouchCancelled,cc.Handler.EVENT_TOUCH_CANCELLED)
+    self:getEventDispatcher():addEventListenerWithSceneGraphPriority(self.touchListener, self)
 end
 
 return ViewBase
