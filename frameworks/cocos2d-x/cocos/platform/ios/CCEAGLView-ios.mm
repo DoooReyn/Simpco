@@ -585,7 +585,7 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
  * always performed on the text from this selection.  nil corresponds to no selection. */
 - (void)setSelectedTextRange:(UITextRange *)aSelectedTextRange
 {
-    CCLOG("UITextRange:setSelectedTextRange");
+//    CCLOG("UITextRange:setSelectedTextRange");
 }
 - (UITextRange *)selectedTextRange
 {
@@ -596,12 +596,12 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 
 - (NSString *)textInRange:(UITextRange *)range
 {
-    CCLOG("textInRange");
+//    CCLOG("textInRange");
     return @"";
 }
 - (void)replaceRange:(UITextRange *)range withText:(NSString *)theText
 {
-    CCLOG("replaceRange");
+//    CCLOG("replaceRange");
 }
 
 #pragma mark UITextInput - Working with Marked and Selected Text
@@ -618,27 +618,27 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 
 - (void)setMarkedTextRange:(UITextRange *)markedTextRange
 {
-    CCLOG("setMarkedTextRange");
+//    CCLOG("setMarkedTextRange");
 }
 
 - (UITextRange *)markedTextRange
 {
-    CCLOG("markedTextRange");
+//    CCLOG("markedTextRange");
     return nil; // Nil if no marked text.
 }
 - (void)setMarkedTextStyle:(NSDictionary *)markedTextStyle
 {
-    CCLOG("setMarkedTextStyle");
+//    CCLOG("setMarkedTextStyle");
     
 }
 - (NSDictionary *)markedTextStyle
 {
-    CCLOG("markedTextStyle");
+//    CCLOG("markedTextStyle");
     return nil;
 }
 - (void)setMarkedText:(NSString *)markedText selectedRange:(NSRange)selectedRange
 {
-    CCLOG("setMarkedText");
+//    CCLOG("setMarkedText");
     if (markedText == markedText_) {
         return;
     }
@@ -650,7 +650,7 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 }
 - (void)unmarkText
 {
-    CCLOG("unmarkText");
+//    CCLOG("unmarkText");
     if (nil == markedText_)
     {
         return;
