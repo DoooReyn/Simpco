@@ -10,10 +10,10 @@ function UpdateUtil:initDownloader()
 end
 
 function UpdateUtil:showUpdateUI()
-    cc.exports.sMainScene = cc.Scene:create()
-    cc.Director:getInstance():runWithScene(sMainScene)
+    cc.exports.GameScene = cc.Scene:create()
+    cc.Director:getInstance():runWithScene(GameScene)
     local updateUI = require("hotupdate.UpdateUI"):new()
-    sMainScene:addChild(updateUI)
+    GameScene:addChild(updateUI)
 
     if false then
         self:checkUpdate()
@@ -44,7 +44,7 @@ function UpdateUtil:onUpdatComplete()
 end
 
 function UpdateUtil:lauchGame()
-    require("app.MyApp"):create():run()
+    require("app.Game"):create():start()
 end
 
 return UpdateUtil

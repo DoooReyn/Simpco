@@ -1,23 +1,25 @@
 
-local strfmt, mkseed, ostime = string.format, math.randomseed, os.time
+
+------------------------------------------
+-- local variables
+--
+local strfmt = string.format
+local mkseed = math.randomseed
+local ostime = os.time
+
+
 local MyApp  = class("MyApp")
 
 function MyApp:ctor()
     mkseed(ostime())
-    cc.exports.Game = {
-        AppVars = {},
-        Modules = {},
-    }
-    self:loadAppVars()
-    self:loadUtils()
-    self:loadModules()
 end
 
 function MyApp:console()
-    Game.Environment:console()
+    self.Environment:console()
 end
 
 function MyApp:loadAppVars()
+    self.AppVars = {}
 
 end
 
@@ -26,20 +28,21 @@ function MyApp:loadUtils()
     require('app.utils.extend.TableExt')
     -- require('app.utils.extend.NumberExt')
     -- require('app.utils.extend.StringExt')
-    Game.SecurityNumber = require('app.utils.extend.SecurityNumber')
+    self.SecurityNumber = require('app.utils.extend.SecurityNumber')
 
     -- Console
-    Game.Environment = require('app.utils.console.Environment')
-    Game.Console     = require('app.utils.console.Console')
+    self.Environment = require('app.utils.console.Environment')
+    self.Console     = require('app.utils.console.Console')
     
     -- eventcenter
-    Game.EventCenter = require('app.utils.event.EventCenter').new()
+    self.EventCenter = require('app.utils.event.EventCenter').new()
     
     -- libs
 
 end
 
 function MyApp:loadModules()
+    self.Modules = {}
     require('app.module.ResMod'):create()
     require('app.module.SrcMod'):create()
     require('app.module.DataMod'):create()
@@ -49,7 +52,7 @@ function MyApp:loadModules()
 end
 
 function MyApp:console()
-    table.foreach(Game.Modules, function(_,k)
+    table.foreach(self.Modules, function(_,k)
         print('[Game] module : ' .. k)
     end)
 end
