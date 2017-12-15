@@ -146,7 +146,7 @@ function ViewBase:maskTouch(isSwallow)
     isSwallow = isSwallow ~= nil and isSwallow or false
     
     local function onTouchBegan(touch, event)
-        print(strfmt('[ViewBase] %s onTouchBegan', self.__cname))
+        print(strfmt('[ViewBase] %s isSwallow : %s', self.__cname, tostring(isSwallow)))
         if self.onTouchBegan then
             self:onTouchBegan(touch, event)
         end
@@ -154,21 +154,18 @@ function ViewBase:maskTouch(isSwallow)
     end
 
     local function onTouchMoved(touch,event)
-        print(strfmt('[ViewBase] %s onTouchMoved', self.__cname))
         if self.onTouchMoved then
             self:onTouchMoved(touch,event)
         end
     end
 
     local function onTouchEnded(touch,event)
-        print(strfmt('[ViewBase] %s onTouchEnded', self.__cname))
         if self.onTouchEnded then
             self:onTouchEnded(touch,event)
         end
     end
 
     local function onTouchCancelled(touch,event)
-        print(strfmt('[ViewBase] %s onTouchCancelled', self.__cname))
         if self.onTouchCancelled then
             self:onTouchCancelled(touch,event)
         end
