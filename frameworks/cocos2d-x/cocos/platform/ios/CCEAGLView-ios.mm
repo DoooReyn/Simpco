@@ -665,40 +665,40 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 
 - (UITextRange *)textRangeFromPosition:(UITextPosition *)fromPosition toPosition:(UITextPosition *)toPosition
 {
-    CCLOG("textRangeFromPosition");
+//    CCLOG("textRangeFromPosition");
     return nil;
 }
 - (UITextPosition *)positionFromPosition:(UITextPosition *)position offset:(NSInteger)offset
 {
-    CCLOG("positionFromPosition");
+//    CCLOG("positionFromPosition");
     return nil;
 }
 - (UITextPosition *)positionFromPosition:(UITextPosition *)position inDirection:(UITextLayoutDirection)direction offset:(NSInteger)offset
 {
-    CCLOG("positionFromPosition");
+//    CCLOG("positionFromPosition");
     return nil;
 }
 
 /* Simple evaluation of positions */
 - (NSComparisonResult)comparePosition:(UITextPosition *)position toPosition:(UITextPosition *)other
 {
-    CCLOG("comparePosition");
+//    CCLOG("comparePosition");
     return (NSComparisonResult)0;
 }
 - (NSInteger)offsetFromPosition:(UITextPosition *)from toPosition:(UITextPosition *)toPosition
 {
-    CCLOG("offsetFromPosition");
+//    CCLOG("offsetFromPosition");
     return 0;
 }
 
 - (UITextPosition *)positionWithinRange:(UITextRange *)range farthestInDirection:(UITextLayoutDirection)direction
 {
-    CCLOG("positionWithinRange");
+//    CCLOG("positionWithinRange");
     return nil;
 }
 - (UITextRange *)characterRangeByExtendingPosition:(UITextPosition *)position inDirection:(UITextLayoutDirection)direction
 {
-    CCLOG("characterRangeByExtendingPosition");
+//    CCLOG("characterRangeByExtendingPosition");
     return nil;
 }
 
@@ -706,12 +706,12 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 
 - (UITextWritingDirection)baseWritingDirectionForPosition:(UITextPosition *)position inDirection:(UITextStorageDirection)direction
 {
-    CCLOG("baseWritingDirectionForPosition");
+//    CCLOG("baseWritingDirectionForPosition");
     return UITextWritingDirectionNatural;
 }
 - (void)setBaseWritingDirection:(UITextWritingDirection)writingDirection forRange:(UITextRange *)range
 {
-    CCLOG("setBaseWritingDirection");
+//    CCLOG("setBaseWritingDirection");
 }
 
 #pragma mark Geometry
@@ -719,12 +719,12 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 /* Geometry used to provide, for example, a correction rect. */
 - (CGRect)firstRectForRange:(UITextRange *)range
 {
-    CCLOG("firstRectForRange");
+//    CCLOG("firstRectForRange");
     return CGRectNull;
 }
 - (CGRect)caretRectForPosition:(UITextPosition *)position
 {
-    CCLOG("caretRectForPosition");
+//    CCLOG("caretRectForPosition");
     return caretRect_;
 }
 
@@ -733,23 +733,23 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 /* JS - Find the closest position to a given point */
 - (UITextPosition *)closestPositionToPoint:(CGPoint)point
 {
-    CCLOG("closestPositionToPoint");
+//    CCLOG("closestPositionToPoint");
     return nil;
 }
 - (UITextPosition *)closestPositionToPoint:(CGPoint)point withinRange:(UITextRange *)range
 {
-    CCLOG("closestPositionToPoint");
+//    CCLOG("closestPositionToPoint");
     return nil;
 }
 - (UITextRange *)characterRangeAtPoint:(CGPoint)point
 {
-    CCLOG("characterRangeAtPoint");
+//    CCLOG("characterRangeAtPoint");
     return nil;
 }
 
 - (NSArray *)selectionRectsForRange:(UITextRange *)range
 {
-    CCLOG("selectionRectsForRange");
+//    CCLOG("selectionRectsForRange");
     return nil;
 }
 

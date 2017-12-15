@@ -4,7 +4,7 @@
 ---- Date   : 2017/12/09
 ---- Author : Reyn - jl88744653@gmail.com
 ------------------------------------------------------------------------------------------
-
+local strfmt   = string.format
 local ViewBase = class('ViewBase', cc.Node)
 
 ----------------------------------------------------
@@ -15,7 +15,9 @@ function ViewBase:ctor(vars)
     if vars and type(vars) == 'table' then 
         self._vars = vars 
     end
+    print(strfmt('[ViewBase] %s ctor', self.__cname))
     self:init()
+    self:loadViewBase()
 end
 
 function ViewBase:getVar(var)
@@ -25,10 +27,9 @@ function ViewBase:getVar(var)
     return self._vars[var]
 end
 
-function ViewBase:init()
+function ViewBase:loadViewBase()
     self:enableNodeEvents()
     self:addTextures()
-    self:initViewBase()
     self:addUIEvents()
     self:bindRender()
 end
@@ -75,36 +76,39 @@ end
 
 ----------------------------------------------------
 
-function ViewBase:onEnter()
-    self:initViewBase()
+function ViewBase:onEnter_()
+    print(strfmt('[ViewBase] %s onEnter', self.__cname))
+    self:loadCsbNode()
 end
 
-function ViewBase:onEnterTransitionFinish()
-    if not self.loadView then
+function ViewBase:onEnterTransitionFinish_()
+    print(strfmt('[ViewBase] %s onEnterTransitionFinish', self.__cname))
+    if not self.onLoad then
         return
     end
-    self:loadView()
+    self:onLoad()
+    print(strfmt('[ViewBase] %s onLoad', self.__cname))
 end
 
-function ViewBase:onExitTransitionStart()
-
+function ViewBase:onExitTransitionStart_()
+    print(strfmt('[ViewBase] %s onExitTransitionStart', self.__cname))
 end
 
-function ViewBase:onExit()
-
+function ViewBase:onExit_()
+    print(strfmt('[ViewBase] %s onExit', self.__cname))
 end
 
-function ViewBase:onCleanup()
+function ViewBase:onCleanup_()
     self:removeUIEvents()
 end
 
 ----------------------------------------------------
 -- @desc : 初始化视图
 --
-function ViewBase:initViewBase()
-    printInfo("[UIBase] loadCsb '%s'", self.__cname)
-    self.rootNode = Game.CacheMod.CsbCache:get(self.__cname, true)
-    self:addChild(self.rootNode)
+function ViewBase:loadCsbNode()
+    print(strfmt('[ViewBase] %s loadCsbNode', self.__cname))
+    -- self.rootNode = Game.CacheMod.CsbCache:get(self.__cname, true)
+    -- self:addChild(self.rootNode)
 end
 
 ----------------------------------------------------
@@ -129,21 +133,18 @@ function ViewBase:getRender()
 end
 
 ----------------------------------------------------
--- @desc : 开始加载视图
+-- @desc : 重新加载视图
 --
-function ViewBase:loadView()
+function ViewBase:onReload()
 
 end
 
 ----------------------------------------------------
--- @desc : 重新加载视图
+-- @desc : 加载UI屏蔽层，默认屏蔽下层
 --
-function ViewBase:reloadView()
-
-end
-
---加载UI屏蔽层，默认屏蔽下层
-function ViewBase:maskTouch(sTag)
+function ViewBase:maskTouch(isSwallow)
+    isSwallow = isSwallow ~= nil and isSwallow or false
+    
     local function onTouchBegan(touch, event)
         if self.onTouchBegan then
             self:onTouchBegan(touch, event)
@@ -170,12 +171,19 @@ function ViewBase:maskTouch(sTag)
     end
 
     self.touchListener = cc.EventListenerTouchOneByOne:create()
-    self.listener:setSwallowTouches(Game.Modules.DataMod.Constant.ViewConst[self.__cname] or false)
+    self.touchListener:setSwallowTouches(isSwallow)
     self.touchListener:registerScriptHandler(onTouchBegan, cc.Handler.EVENT_TOUCH_BEGAN)
     self.touchListener:registerScriptHandler(onTouchMoved, cc.Handler.EVENT_TOUCH_MOVED)
     self.touchListener:registerScriptHandler(onTouchEnded, cc.Handler.EVENT_TOUCH_ENDED)
     self.touchListener:registerScriptHandler(onTouchCancelled,cc.Handler.EVENT_TOUCH_CANCELLED)
     self:getEventDispatcher():addEventListenerWithSceneGraphPriority(self.touchListener, self)
+end
+
+----------------------------------------------------
+-- @desc : 关闭
+--
+function ViewBase:close()
+    Game.ViewCore:releaseView(self.__cname)
 end
 
 return ViewBase

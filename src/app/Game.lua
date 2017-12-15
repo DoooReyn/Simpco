@@ -21,13 +21,16 @@ local Game = class('Game')
 -- 
 function Game:ctor()
     mkseed(ostime())
-    self:loadCores()
+end
+
+function Game:initialize()
+    self:initCores()
 end
 
 ---------------------------------------------------------
 -- @desc: Load Game Core Module -> start
 -- 
-function Game:loadCores()
+function Game:initCores()
     Game.UtilCore    = require('app.utils.UtilCore'):create()
     Game.DataCore    = require('app.data.DataCore'):create()
     Game.EventCore   = require('app.event.EventCore'):create()
@@ -40,11 +43,14 @@ end
 -- @desc: Control Game Running State -> start
 -- 
 function Game:start()
-    Game.ViewCore:loadView()
-    Game.ViewCore:reloadView()
-    Game.ViewCore:releaseView()
-    Game.ViewCore:findView()
-    Game.ViewCore:refreshView()
+    Game.UtilCore:load()
+    Game.DataCore:load()  
+    Game.EventCore:load()
+    Game.NetCore:load() 
+    Game.RenderCore:load()
+    Game.ViewCore:load()
+    
+    Game.ViewCore:loadView('LoginView')--:onLoad()
 end
 
 ---------------------------------------------------------

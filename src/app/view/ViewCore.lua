@@ -1,21 +1,40 @@
 
 local strfmt = string.format
 
-
 local _M = class('ViewCore')
 
 function _M:ctor()
+    self.Const  = Game.DataCore:findConstant('ViewConst')
     self._views = {}
 end
 
 function _M:load()
+    self:loadGlobalNodes()
+end
 
+function _M:loadGlobalNodes()
+    print('[ViewCore] loadGlobalNodes')
+    GameScene:removeAllChildren()
+    self.mapRoot    = cc.Node:create()
+    self.objectRoot = cc.Node:create()
+    self.uiRoot     = cc.Node:create()
+    self.msgRoot    = cc.Node:create()
+    self.guideRoot  = cc.Node:create()
+    GameScene:addChild(self.mapRoot,    self.Const.SceneZOrder.Map)
+    GameScene:addChild(self.objectRoot, self.Const.SceneZOrder.Object)
+    GameScene:addChild(self.uiRoot,     self.Const.SceneZOrder.UI)
+    GameScene:addChild(self.msgRoot,    self.Const.SceneZOrder.Msg)
+    GameScene:addChild(self.guideRoot,  self.Const.SceneZOrder.Guide)
 end
 
 function _M:loadView(vtag, ...)
     if not vtag then return nil end
     if not self._views[vtag] then
-        self._views[vtag] = require(strfmt('app.views.%s'), vtag):create(...)
+        local uiargs = self.Const.UIArgs[vtag]
+        self._views[vtag] = require(strfmt('app.view.%s', vtag)):create(...)
+        self._views[vtag]:maskTouch(uiargs.swallow)
+        self.uiRoot:addChild(self._views[vtag], uiargs.zorder)
+        print(strfmt('[ViewCore] %s has loaded.', vtag))
     end
     return self._views[vtag]
 end

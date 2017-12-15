@@ -44,7 +44,9 @@ function UpdateUtil:onUpdatComplete()
 end
 
 function UpdateUtil:lauchGame()
-    require("app.Game"):create():start()
+    cc.exports.Game = require("app.Game"):create()
+    Game:initialize()
+    Game:start()
 end
 
 return UpdateUtil

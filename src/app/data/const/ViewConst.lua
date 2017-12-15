@@ -9,10 +9,24 @@
 -- @param swallow : 吞噬触摸
 -- @param keep    : 是否常驻
 --
+
+local SceneZOrder = {
+    Map     = -1,
+    Object  = 10,
+    UI      = 20,
+    Msg     = 30,
+    Guide   = 40,
+}
+
+local UIArgs = {
+    LoginView               = { swallow = false,     zorder = 1,     keep = false },
+    CreateRoleView          = { swallow = true,     zorder = 1,     keep = false },
+    MainScreenView          = { swallow = true,     zorder = 1,     keep = true  },
+    MainMenuView            = { swallow = true,     zorder = 1,     keep = true  },
+    SystemConfiguraionView  = { swallow = true,     zorder = 1,     keep = false },
+}
+
 return {
-    LoginView               = { swallow = true, keep = false },
-    CreateRoleView          = { swallow = true, keep = false },
-    MainScreenView          = { swallow = true, keep = true  },
-    MainMenuView            = { swallow = true, keep = true  },
-    SystemConfiguraionView  = { swallow = true, keep = false },
+    SceneZOrder = SceneZOrder,
+    UIArgs      = UIArgs,
 }
