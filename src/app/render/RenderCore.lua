@@ -22,6 +22,7 @@ function _M:unloadRender(rtag)
     if not rtag or not self.renders[rtag] then 
         return 
     end
+    self.renders[rtag]:onCleanup()
     self.renders[rtag] = nil
 end
 

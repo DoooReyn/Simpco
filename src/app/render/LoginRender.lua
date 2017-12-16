@@ -4,4 +4,6 @@ function LoginRender:init()
 
 end
 
+
+
 return LoginRender
