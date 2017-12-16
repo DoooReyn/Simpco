@@ -11,6 +11,8 @@ function LoginView:onLoad()
     sp:setTouchEnabled(true)
     sp:onTouchEx('ended', function()
         -- self:close()
+        self.Render:stopTimer('LoginTimer1')
+        Game.AudioCore:playMusic(3)
     end)
 
     self:initTimers()

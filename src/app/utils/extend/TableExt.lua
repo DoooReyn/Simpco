@@ -1,5 +1,5 @@
 ------------------------------------------------------------------------------------------
----- Name   : tableExt
+---- Name   : TableExt
 ---- Desc   : lua表扩展
 ---- Date   : 2017/12/09
 ---- Author : Reyn - jl88744653@gmail.com
@@ -65,4 +65,56 @@ function table.random(t)
     local keys = table.keys(t)
     local key1 = keys[mrandom(1, #keys)]
     return t[key1]
+end
+
+----------------------------------------------------
+-- @desc : 移除表中的第一个元素
+-- @param : t - 表
+--
+function table.shift(t)
+    return table.remove(t, 1)
+end
+
+----------------------------------------------------
+-- @desc : 移除表中的最后一个元素
+-- @param : t - 表
+--
+function table.pop(t)
+    return table.remove(t, #t)
+end
+
+----------------------------------------------------
+-- @desc : 移动第一个元素到最后
+-- @param : t - 表
+--
+function table.tail(t)
+    local h = table.remove(t, 1)
+    table.insert(t, h)
+    return h
+end
+
+----------------------------------------------------
+-- @desc : 移动表元素位置
+-- @param : t - 表
+-- @param : s - 起始位置
+-- @param : s - 插入位置
+--
+function table.move(t, s, d)
+    local h = table.remove(t, 1)
+    table.insert(t, d, h)
+    return h
+end
+
+function table.range(from, to, step)
+    if from > to then 
+        from, to = to, from
+    end
+    if step == nil or step <= 0 then 
+        step = 1 
+    end
+    local t = {}
+    for i=from, to, step do
+        table.insert(t, i)
+    end
+    return t
 end

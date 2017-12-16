@@ -68,7 +68,14 @@ end
 -- @desc: Control Game Running State -> stop
 -- 
 function Game:stop()
-
+    -- Game.UtilCore:unload()
+    -- Game.DataCore:unload()  
+    Game.AudioCore:unload()
+    -- Game.EventCore:unload()
+    -- Game.NetCore:unload() 
+    -- Game.RenderCore:unload()
+    -- Game.ViewCore:unload()
+    -- Game.TimerCore:unload()
 end
 
 ---------------------------------------------------------

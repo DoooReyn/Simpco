@@ -5,8 +5,9 @@ function _M:ctor()
 end
 
 function _M:initGlobals()
-    require('app.utils.Globals')
+    require('app.utils.extend.TableExt')
     require('app.utils.extend.UIWidgetExt')
+    require('app.utils.Globals')
 end
 
 function _M:load()

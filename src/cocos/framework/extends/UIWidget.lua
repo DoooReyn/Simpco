@@ -57,8 +57,8 @@ function Widget:onTouch(callback)
         elseif state == 2 then
             event.name = "ended"
             if not self.disableAudio then
-                local audioId = sender.audioId or 'clk_01'
-                Game.AudioCore:playEffect(audioId)
+                local effectId = sender.effectId or 1
+                Game.AudioCore:playEffect(effectId)
             end
             scale_ended()
         else
