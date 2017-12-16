@@ -64,7 +64,7 @@ end
 function ViewBase:onCleanup_()
     print(strfmt('[ViewBase] %s onCleanup', self.__cname))
     self:disableFrameUpdate()
-    self.Render:onCleanup()
+    pcall(function() self.Render:onCleanup() end)
 end
 
 ----------------------------------------------------
