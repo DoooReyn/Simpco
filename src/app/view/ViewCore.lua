@@ -1,19 +1,37 @@
+------------------------------------------------------------------------------------------
+---- Name   : ViewCore
+---- Desc   : 视图核心类
+---- Date   : 2017/12/16
+---- Author : Reyn - jl88744653@gmail.com
+------------------------------------------------------------------------------------------
 
-local strfmt = string.format
-local ViewConst  = Game.DataCore:findConstant('ViewConst')
+------------------------------------------
+-- local variables
+--
+local strfmt    = string.format
+local ViewConst = Game.DataCore:findConstant('ViewConst')
 
+---------------------------------------------------------
+-- @desc: Class ViewCore
+-- 
 local _M = class('ViewCore')
 
 function _M:ctor()
     self._views = {}
 end
 
+---------------------------------------------------------
+-- @desc: Core load function
+-- 
 function _M:load()
-    self:loadGlobalNodes()
+    self:loadRootNodes()
 end
 
-function _M:loadGlobalNodes()
-    print('[ViewCore] loadGlobalNodes')
+---------------------------------------------------------
+-- @desc: 加载根节点
+-- 
+function _M:loadRootNodes()
+    print('[ViewCore] loadRootNodes')
     GameScene:removeAllChildren()
     self.mapRoot    = cc.Node:create()
     self.objectRoot = cc.Node:create()
@@ -27,6 +45,9 @@ function _M:loadGlobalNodes()
     GameScene:addChild(self.guideRoot,  ViewConst.SceneZOrder.Guide)
 end
 
+---------------------------------------------------------
+-- @desc: 加载视图
+-- 
 function _M:loadView(vtag, ...)
     if not vtag then return nil end
     if not self._views[vtag] then
@@ -34,11 +55,14 @@ function _M:loadView(vtag, ...)
         self._views[vtag] = require(strfmt('app.view.%s', vtag)):create(...)
         self._views[vtag]:maskTouch(uiargs.swallow)
         self.uiRoot:addChild(self._views[vtag], uiargs.zorder)
-        print(strfmt('[ViewCore] %s has loaded.', vtag))
     end
+    print(strfmt('[ViewCore] %s has loaded.', vtag))
     return self._views[vtag]
 end
 
+---------------------------------------------------------
+-- @desc: 释放视图
+-- 
 function _M:releaseView(vtag)
     if not self._views[vtag] then
         prinf('[ViewCore] Sorry, we can not locate this view : ' .. tostring(vtag))
@@ -47,26 +71,21 @@ function _M:releaseView(vtag)
     local view = self._views[vtag]
     view:removeFromParent()
     self._views[vtag] = nil
+    print(strfmt('[ViewCore] %s has released.', vtag))
 end
 
+---------------------------------------------------------
+-- @desc: 获取视图
+-- 
 function _M:findView(vtag)
     return self._views[vtag]
 end
 
+---------------------------------------------------------
+-- @desc: 刷新所有视图
+-- 
 function _M:refreshViews()
     
 end
-
--- function _M:pushRootViews()
-
--- end
-
--- function _M:popToRootViews()
-
--- end
-
--- function _M:cleanRootViews()
-
--- end
 
 return _M

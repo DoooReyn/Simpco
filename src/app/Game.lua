@@ -50,7 +50,7 @@ function Game:start()
     Game.RenderCore:load()
     Game.ViewCore:load()
     
-    Game.ViewCore:loadView('LoginView')--:onLoad()
+    Game.ViewCore:loadView('LoginView')
 end
 
 ---------------------------------------------------------
