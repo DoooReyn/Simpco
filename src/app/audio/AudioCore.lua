@@ -9,18 +9,42 @@ function AudioCore:ctor()
     self.effect = {}
     self.effectId  = -1
     self.musicId   = -1
+    self.musicVol  = 100
+    self.effectVol = 100
     self.isPlayMusic  = UserConfig:getBoolForKey(kMusicKey,  true)
     self.isPlayEffect = UserConfig:getBoolForKey(kEffectKey, true)
 end
 
 function AudioCore:load()
-    
+    self:playMusicInSet(table.range(1,3))
 end
 
-function AidioCore:getAudioPath(audioId)
+function AudioCore:unload()
+    ccexp.AudioEngine['end']()
+end
+
+function AudioCore:setMusicVolume(vol)
+    if self.musicVol == vol then return end
+    self.musicVol = min(100, max(0, vol))
+end
+
+function AudioCore:setEffectVolume(vol)
+    if self.effectVol == vol then return end
+    self.effectVol = min(100, max(0, vol))
+end
+
+function AudioCore:setVolume(atype, playAudioId)
+    if atype == 'music' then
+        ccexp.AudioEngine:setVolume(playAudioId, self.musicVol)
+    elseif atype == 'effect' then
+        ccexp.AudioEngine:setVolume(playAudioId, self.effectVol)
+    end
+end
+
+function AudioCore:getAudioPath(audioId)
     local path = strfmt('audio/%s.mp3', audioId)
     if not cc.FileUtils:getInstance():isFileExist(path) then
-        print(strfmt('[AidioCore] %s not found.', path))
+        print(strfmt('[AudioCore] %s not found.', path))
         return nil
     end
     return path
@@ -32,7 +56,7 @@ function AudioCore:preload(audioId)
     ccexp.AudioEngine:preload(path) 
 end
 
-function AidioCore:setPlayAudioId(atype, playAudioId)
+function AudioCore:setPlayAudioId(atype, playAudioId)
     if atype == 'music' then
         self.musicId = playAudioId
     elseif atype == 'effect' then
@@ -44,7 +68,7 @@ function AudioCore:play(audioId, atype, callfn)
     if not self.isPlayMusic  and atype == 'music'  then return end
     if not self.isPlayEffect and atype == 'effect' then return end
     if atype == 'music' and self.musicId ~= -1 then
-        print('[AudioCore] There is a music on playing : ', self.musicId)
+        print(strfmt('[AudioCore] music on playing : %s', audioId))
         return
     end
     if atype == 'effect' and self.effectId ~= -1 then
@@ -56,38 +80,40 @@ function AudioCore:play(audioId, atype, callfn)
     
     local playAudioId = ccexp.AudioEngine:play2d(path)
     self:setPlayAudioId(atype, playAudioId)
+    self:setVolume(atype, playAudioId)
+    print(strfmt('[AudioCore] play %s audio : %s', atype, audioId))
     
-    local function audioEndFn(audioId, filePath)
-        print('[AudioCore] audioEndFn : ', audioId, filePath)
+    local function audioStopFn(aId, path)
+        print(strfmt('[AudioCore] stop %s audio : %s', atype, audioId))
         self:setPlayAudioId(atype, -1)
-        if callfn then callfn() end
+        if callfn then callfn(aId, path) end
     end
-    ccexp.AudioEngine:setFinishCallback(playAudioId, audioEndFn) 
+    ccexp.AudioEngine:setFinishCallback(playAudioId, audioStopFn) 
 end
 
-function AidioCore:stopEffect()
+function AudioCore:stopEffect()
     if not self.effectId then return end
     ccexp.AudioEngine:stop(self.effectId)
     self.effectId = -1
 end
 
-function AidioCore:stopMusic()
+function AudioCore:stopMusic()
     if not self.musicId then return end
     ccexp.AudioEngine:stop(self.musicId)
     self.musicId = -1
 end
 
 function AudioCore:playEffect(audioId, callfn)
-    self:play(strfmt('eff%3d', audioId), 'effect', callfn)
+    self:play(strfmt('eff%03d', audioId), 'effect', callfn)
 end
 
 function AudioCore:playMusic(audioId, callfn)
-    self:play(strfmt('bkg%3d', audioId), 'music', callfn)
+    self:play(strfmt('bkg%03d', audioId), 'music', callfn)
 end
 
 function AudioCore:playMusicInSet(bkgset)
     if bkgset and #bkgset > 0 then 
-        local head = table.shift(bkgset)
+        local head = table.tail(bkgset)
         self:playMusic(head, function()
             self:playMusicInSet(bkgset)
         end)
