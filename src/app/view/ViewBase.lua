@@ -121,21 +121,14 @@ end
 -- @desc : 绑定视图渲染器
 --
 function ViewBase:bindRender()
-
-end
-
-----------------------------------------------------
--- @desc : 解绑视图渲染器
---
-function ViewBase:unbindRender()
-
+    Game.RenderCore:loadRender(self.__cname)
 end
 
 ----------------------------------------------------
 -- @desc : 获取视图渲染器
 --
 function ViewBase:getRender()
-
+    return Game.RenderCore:findRender(self.__cname)
 end
 
 ----------------------------------------------------
