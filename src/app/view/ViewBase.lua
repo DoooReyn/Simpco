@@ -35,49 +35,7 @@ end
 --
 function ViewBase:loadViewBase()
     self:enableNodeEvents()
-    self:addTextures()
-    self:addUIEvents()
     self:bindRender()
-end
-
-----------------------------------------------------
--- @desc : 添加UI事件
---
-function ViewBase:addUIEvents()
-    if not self.events then return end
-    table.foreach(self.events, function(eventName, eventHandler)
-        sEvent:on(eventName, eventHandler)
-    end)
-end
-
-----------------------------------------------------
--- @desc : 移除UI事件
---
-function ViewBase:removeUIEvents()
-    if not self.events then return end
-    table.foreach(self.events, function(eventName)
-        sEvent:off(eventName)
-    end)
-end
-
-----------------------------------------------------
--- @desc : 添加UI用纹理
---
-function ViewBase:addTextures()
-    if not self.textures then return end
-    table.foreach(self.textures, function(v)
-        display.loadSpriteFrames(sResMgr:get(v))
-    end)
-end
-
-----------------------------------------------------
--- @desc : 移除UI用纹理
---
-function ViewBase:removeTextures()
-    if not self.textures then return end
-    table.foreach(self.textures, function(v)
-        display.removeSpriteFrames(sResMgr:get(v))
-    end)
 end
 
 ----------------------------------------------------
@@ -93,7 +51,6 @@ function ViewBase:onEnterTransitionFinish_()
         return
     end
     self:onLoad()
-    print(strfmt('[ViewBase] %s onLoad', self.__cname))
 end
 
 function ViewBase:onExitTransitionStart_()
@@ -105,7 +62,9 @@ function ViewBase:onExit_()
 end
 
 function ViewBase:onCleanup_()
-    self:removeUIEvents()
+    print(strfmt('[ViewBase] %s onCleanup', self.__cname))
+    self:disableFrameUpdate()
+    self.Render:onCleanup()
 end
 
 ----------------------------------------------------
@@ -121,14 +80,22 @@ end
 -- @desc : 绑定视图渲染器
 --
 function ViewBase:bindRender()
-    Game.RenderCore:loadRender(self.__cname)
+    self.Render = Game.RenderCore:loadRender(self.__cname)
+    pcall(function() self.Render:initialize() end)
 end
 
-----------------------------------------------------
--- @desc : 获取视图渲染器
---
-function ViewBase:getRender()
-    return Game.RenderCore:findRender(self.__cname)
+function ViewBase:enableFrameUpdate()
+    if not self.onFrameUpdate then 
+        return 
+    end
+    self:scheduleUpdateWithPriorityLua(handler(self, self.onFrameUpdate), 0)
+end
+
+function ViewBase:disableFrameUpdate()
+    if not self.onFrameUpdate then 
+        return 
+    end
+    self:unscheduleUpdate()
 end
 
 ----------------------------------------------------

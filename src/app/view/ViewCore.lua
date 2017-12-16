@@ -54,7 +54,7 @@ function _M:loadView(vtag, ...)
         local uiargs = ViewConst.UIArgs[vtag]
         self._views[vtag] = require(strfmt('app.view.%s', vtag)):create(...)
         self._views[vtag]:maskTouch(uiargs.swallow)
-        self.uiRoot:addChild(self._views[vtag], uiargs.zorder)
+        self.uiRoot:addChild(self._views[vtag])
     end
     print(strfmt('[ViewCore] %s has loaded.', vtag))
     return self._views[vtag]

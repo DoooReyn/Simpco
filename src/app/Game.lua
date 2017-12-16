@@ -33,10 +33,12 @@ end
 function Game:initCores()
     Game.UtilCore    = require('app.utils.UtilCore'):create()
     Game.DataCore    = require('app.data.DataCore'):create()
+    Game.AudioCore   = require('app.audio.AudioCore'):create()
     Game.EventCore   = require('app.event.EventCore'):create()
     Game.NetCore     = require('app.network.NetCore'):create()
     Game.RenderCore  = require('app.render.RenderCore'):create()
     Game.ViewCore    = require('app.view.ViewCore'):create()
+    Game.TimerCore   = require('app.timer.TimerCore'):create()
 end
 
 ---------------------------------------------------------
@@ -45,10 +47,12 @@ end
 function Game:start()
     Game.UtilCore:load()
     Game.DataCore:load()  
+    Game.AudioCore:load()
     Game.EventCore:load()
     Game.NetCore:load() 
     Game.RenderCore:load()
     Game.ViewCore:load()
+    Game.TimerCore:load()
     
     Game.ViewCore:loadView('LoginView')
 end

@@ -19,11 +19,11 @@ local SceneZOrder = {
 }
 
 local UIArgs = {
-    LoginView               = { swallow = true,    zorder = 1,     keep = false },
-    CreateRoleView          = { swallow = true,     zorder = 1,     keep = false },
-    MainScreenView          = { swallow = true,     zorder = 1,     keep = true  },
-    MainMenuView            = { swallow = true,     zorder = 1,     keep = true  },
-    SystemConfiguraionView  = { swallow = true,     zorder = 1,     keep = false },
+    LoginView               = { swallow = true, keep = false },
+    CreateRoleView          = { swallow = true, keep = false },
+    MainScreenView          = { swallow = true, keep = true  },
+    MainMenuView            = { swallow = true, keep = true  },
+    SystemConfiguraionView  = { swallow = true, keep = false },
 }
 
 return {

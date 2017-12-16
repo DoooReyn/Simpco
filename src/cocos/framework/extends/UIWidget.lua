@@ -23,18 +23,47 @@ THE SOFTWARE.
 ]]
 
 local Widget = ccui.Widget
+local kScaleTag  = 2046
+local kScaleTime = 0.03
+local kScaleFact = 0.95
 
 function Widget:onTouch(callback)
+    local function scale_began()
+        if not self.disableScale then
+            self:stopActionByTag(kScaleTag)
+            self._bs = self:getScale()
+            local act = cc.ScaleTo:create(kScaleTime, self._bs*kScaleFact)
+            act:setTag(kScaleTag)
+            self:runAction(act)
+        end
+    end
+
+    local function scale_ended()
+        if not self.disableScale then
+            self:stopActionByTag(kScaleTag)
+            local act = cc.ScaleTo:create(kScaleTime, self._bs)
+            act:setTag(kScaleTag)
+            self:runAction(act)
+        end
+    end
+    
     self:addTouchEventListener(function(sender, state)
         local event = {x = 0, y = 0}
         if state == 0 then
             event.name = "began"
+            scale_began()
         elseif state == 1 then
             event.name = "moved"
         elseif state == 2 then
             event.name = "ended"
+            if not self.disableAudio then
+                local audioId = sender.audioId or 'clk_01'
+                Game.AudioCore:playEffect(audioId)
+            end
+            scale_ended()
         else
             event.name = "cancelled"
+            scale_ended()
         end
         event.target = sender
         callback(event)
