@@ -13,10 +13,15 @@ local UIHelperCore = class('UIHelperCore')
 
 function UIHelperCore:ctor()
     self:initNativeUI()
+    self:initColorify()
 end
 
 function UIHelperCore:initNativeUI()
     require('app.uihelper.nativeui.UIWidgetExt')
+end
+
+function UIHelperCore:initColorify()
+    cc.exports.Colorify = require('app.uihelper.color.Colorify')
 end
 
 ---------------------------------------------------------
