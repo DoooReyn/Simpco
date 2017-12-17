@@ -90,6 +90,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 // This function will be called when the app is inactive. Note, when receiving a phone call it is invoked.
 void AppDelegate::applicationDidEnterBackground()
 {
+    Director::getInstance()->getEventDispatcher()->dispatchCustomEvent("GameEnterBackGroundSys");
     Director::getInstance()->stopAnimation();
 
 #if USE_AUDIO_ENGINE
@@ -103,6 +104,7 @@ void AppDelegate::applicationDidEnterBackground()
 // this function will be called when the app is active again
 void AppDelegate::applicationWillEnterForeground()
 {
+    Director::getInstance()->getEventDispatcher()->dispatchCustomEvent("GameEnterForeGroundSys");
     Director::getInstance()->startAnimation();
 
 #if USE_AUDIO_ENGINE

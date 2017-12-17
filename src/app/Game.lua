@@ -10,6 +10,7 @@
 --
 local mkseed = math.randomseed
 local ostime = os.time
+local strfmt = string.format
 
 ------------------------------------------
 -- Class Game
@@ -25,6 +26,8 @@ end
 -- @desc : initialize Game Enviroment
 --
 function Game:initialize()
+    self.enterFGAt = 0
+    self.enterBGAt = 0
     self:initCores()
 end
 
@@ -54,8 +57,21 @@ function Game:start()
     Game.RenderCore:load()
     Game.ViewCore:load()
     Game.TimerCore:load()
+    self:registerSystemEvent()
     
     Game.ViewCore:loadView('LoginView')
+end
+
+------------------------------------------
+-- @desc: register game system event
+-- 
+function Game:registerSystemEvent()    
+    local Events = Game.DataCore:findConstant('EventConst')
+    cc.exports.SystemEvent  = Events.System
+    cc.exports.CustomEvent  = Events.Custom
+    cc.exports.NetworkEvent = Events.Network
+    Game.EventCore:on(SystemEvent.GameEnterBackGroundSys, handler(self, self.onEnterBackGround))
+    Game.EventCore:on(SystemEvent.GameEnterForeGroundSys, handler(self, self.onEnterForeGround))
 end
 
 ------------------------------------------
@@ -108,17 +124,27 @@ function Game:speedNormal()
 end
 
 -------------------------------------------
--- @desc: Listen Game Back To FG Event -> onReturnForeGround
+-- @desc: Listen Game Enter FG Event -> onEnterForeGround
 -- 
-function Game:onReturnForeGround()
-
+function Game:onEnterForeGround()
+    self.enterFGAt = ostime()
+    print(strfmt('[Game] Game Enter Foreground at : %s', tostring(self.enterFGAt)))
+    print(strfmt('[Game] Game Leave Time : %ds', self:getLeaveTime()))
 end
 
 -------------------------------------------
--- @desc: Control Enter BG Event -> onEnterBackGround
+-- @desc: Listen Game Enter BG Event -> onEnterBackGround
 -- 
 function Game:onEnterBackGround()
+    self.enterBGAt = ostime()
+    print(strfmt('[Game] Game Enter Background at : %s', tostring(self.enterBGAt)))
+end
 
+-------------------------------------------
+-- @desc: get leave time (from background to foreground)
+-- 
+function Game:getLeaveTime()
+    return self.enterFGAt - self.enterBGAt
 end
 
 return Game
