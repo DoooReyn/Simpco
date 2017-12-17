@@ -20,6 +20,7 @@ local Game = class('Game')
 function Game:ctor()
     mkseed(ostime())
     cc.Director:getInstance():setDisplayStats(CC_SHOW_FPS)
+    self:updateFPS(28)
 end
 
 ------------------------------------------
@@ -72,6 +73,11 @@ function Game:registerSystemEvent()
     cc.exports.NetworkEvent = Events.Network
     Game.EventCore:on(SystemEvent.GameEnterBackGroundSys, handler(self, self.onEnterBackGround))
     Game.EventCore:on(SystemEvent.GameEnterForeGroundSys, handler(self, self.onEnterForeGround))
+end
+
+
+function Game:updateFPS(fps)
+    cc.Director:getInstance():setAnimationInterval(1.0/fps)
 end
 
 ------------------------------------------
