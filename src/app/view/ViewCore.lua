@@ -45,11 +45,13 @@ function _M:loadRootNodes()
     self.uiRoot     = cc.Node:create()
     self.msgRoot    = cc.Node:create()
     self.guideRoot  = cc.Node:create()
+    self.actionRoot = cc.Node:create()
     GameScene:addChild(self.mapRoot,    ViewConst.SceneZOrder.Map)
     GameScene:addChild(self.objectRoot, ViewConst.SceneZOrder.Object)
     GameScene:addChild(self.uiRoot,     ViewConst.SceneZOrder.UI)
     GameScene:addChild(self.msgRoot,    ViewConst.SceneZOrder.Msg)
     GameScene:addChild(self.guideRoot,  ViewConst.SceneZOrder.Guide)
+    GameScene:addChild(self.actionRoot, ViewConst.SceneZOrder.Action)
 end
 
 ---------------------------------------------------------

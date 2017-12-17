@@ -16,6 +16,7 @@ local SceneZOrder = {
     UI      = 20,
     Msg     = 30,
     Guide   = 40,
+    Action  = 50,
 }
 
 local UIArgs = {
