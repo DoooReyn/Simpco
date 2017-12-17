@@ -22,6 +22,7 @@ end
 
 function UIHelperCore:initColorify()
     cc.exports.Colorify = require('app.uihelper.color.Colorify')
+    Colorify:testcase()
 end
 
 ---------------------------------------------------------

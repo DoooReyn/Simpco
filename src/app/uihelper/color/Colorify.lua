@@ -50,4 +50,27 @@ function Colorify:hex2c4f(hex)
     return convert(self:hex2c4b(hex), '4f')
 end
 
+function Colorify:testcase()
+    print('[Colorify] c3b')
+    dump(Colorify:hex2c3b('12345'),   '12345')
+    dump(Colorify:hex2c3b('987654'),  '987654')
+    dump(Colorify:hex2c3b('9876542'), '9876542')
+    dump(Colorify:hex2c3b('abcdf1'),  'abcdf1')
+    dump(Colorify:hex2c3b('abcdfg'),  'abcdfg')
+    
+    print('[Colorify] c4b')
+    dump(Colorify:hex2c4b('1234567'),   '1234567')
+    dump(Colorify:hex2c4b('12345678'),  '12345678')
+    dump(Colorify:hex2c4b('123456789'), '123456789')
+    dump(Colorify:hex2c4b('abcdf123'),  'abcdf123')
+    dump(Colorify:hex2c4b('abcdfghi'),  'abcdfghi')
+
+    print('[Colorify] c4f')
+    dump(Colorify:hex2c4f('1234567'),   '1234567')
+    dump(Colorify:hex2c4f('12345678'),  '12345678')
+    dump(Colorify:hex2c4f('123456789'), '123456789')
+    dump(Colorify:hex2c4f('abcdf123'),  'abcdf123')
+    dump(Colorify:hex2c4f('abcdfghi'),  'abcdfghi')
+end
+
 return Colorify

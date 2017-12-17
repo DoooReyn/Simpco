@@ -70,26 +70,6 @@ function Game:start()
     
     --挂载第一个视图
     Game.ViewCore:loadView('LoginView')
-
-    local Colorify = require('app.uihelper.color.Colorify')
-    print('---------c3b----------')
-    dump(Colorify:hex2c3b('12345'))
-    dump(Colorify:hex2c3b('987654'))
-    dump(Colorify:hex2c3b('9876542'))
-    
-    print('---------c4b----------')
-    dump(Colorify:hex2c4b('1234567'))
-    dump(Colorify:hex2c4b('12345678'))
-    dump(Colorify:hex2c4b('123456789'))
-    dump(Colorify:hex2c4b('abcdf123'))
-    dump(Colorify:hex2c4b('abcdfghi'))
-
-    print('---------c4f----------')
-    dump(Colorify:hex2c4f('1234567'))
-    dump(Colorify:hex2c4f('12345678'))
-    dump(Colorify:hex2c4f('123456789'))
-    dump(Colorify:hex2c4f('abcdf123'))
-    dump(Colorify:hex2c4f('abcdfghi'))
 end
 
 ------------------------------------------
