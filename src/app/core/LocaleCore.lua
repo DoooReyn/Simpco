@@ -29,4 +29,33 @@ function LocaleCore:unload()
 
 end
 
+---------------------------------------------------------
+-- @desc: 核心卸载
+-- 
+function LocaleCore:localeAt()
+
+end
+
+---------------------------------------------------------
+-- @desc: 获得多语言对应文本
+-- @param : textId - 文本ID
+--
+function LocaleCore:getLocaleText(textId)
+
+end
+
+---------------------------------------------------------
+-- @desc: 获得多语言对应字体
+-- 
+function LocaleCore:getLocaleFont()
+
+end
+
+---------------------------------------------------------
+-- @desc: 重新载入多语言环境
+-- 
+function LocaleCore:reloadLocaleEnv()
+
+end
+
 return LocaleCore
