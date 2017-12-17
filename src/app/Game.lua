@@ -37,14 +37,14 @@ end
 -- @desc: Load Game Core Module -> start
 -- 
 function Game:initCores()
-    Game.UtilCore   = require('app.utils.UtilCore'):create()
-    Game.DataCore   = require('app.data.DataCore'):create()
-    Game.AudioCore  = require('app.audio.AudioCore'):create()
-    Game.EventCore  = require('app.event.EventCore'):create()
-    Game.NetCore    = require('app.network.NetCore'):create()
-    Game.RenderCore = require('app.render.RenderCore'):create()
-    Game.ViewCore   = require('app.view.ViewCore'):create()
-    Game.TimerCore  = require('app.timer.TimerCore'):create()
+    Game.UtilCore   = require('app.core.UtilCore'):create()
+    Game.DataCore   = require('app.core.DataCore'):create()
+    Game.AudioCore  = require('app.core.AudioCore'):create()
+    Game.EventCore  = require('app.core.EventCore'):create()
+    Game.NetCore    = require('app.core.NetCore'):create()
+    Game.RenderCore = require('app.core.RenderCore'):create()
+    Game.ViewCore   = require('app.core.ViewCore'):create()
+    Game.TimerCore  = require('app.core.TimerCore'):create()
 end
 
 ------------------------------------------
