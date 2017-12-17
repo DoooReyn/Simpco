@@ -5,15 +5,15 @@
 ---- Author : Reyn - jl88744653@gmail.com
 ------------------------------------------------------------------------------------------
 
-local EventCore = class('EventCore')
-local __dispatcher = cc.Director:getInstance():getEventDispatcher()
+local EventCore  = class('EventCore')
+local Dispatcher = cc.Director:getInstance():getEventDispatcher()
 
 function EventCore:ctor()
     self.listenerRecords = {}
 end
 
 function EventCore:load()
-
+    
 end
 
 function EventCore:unload()
@@ -30,7 +30,7 @@ function EventCore:on(eventName, eventHandler)
         self:off(eventName)
     end
     local listener = cc.EventListenerCustom:create(eventName, eventHandler)
-    __dispatcher:addEventListenerWithFixedPriority(listener, 1)
+    Dispatcher:addEventListenerWithFixedPriority(listener, 1)
     self.listenerRecords[eventName] = listener
 end
 
@@ -41,7 +41,7 @@ end
 function EventCore:off(eventName)
     local listener = self.listenerRecords[eventName]
     if not listener then return end
-    __dispatcher:removeEventListener(listener)
+    Dispatcher:removeEventListener(listener)
     slef.listenerRecords[eventName] = nil
 end
 
@@ -53,7 +53,7 @@ end
 function EventCore:send(eventName, userData)
     local event = cc.EventCustom:new(eventName)
     event._usedata = userData
-    __dispatcher:dispatchEvent(event)
+    Dispatcher:dispatchEvent(event)
 end
 
 ----------------------------------------------------

@@ -37,7 +37,13 @@ end
 -- @desc: 初始化常量数据
 -- 
 function _M:initConstants()
-    self.Constants.ViewConst = require('app.data.const.ViewConst')
+    local constants = {
+        'ViewConst',
+        'EventConst',
+    }
+    for _, v in ipairs(constants) do
+        self.Constants[v] = require('app.data.const.' .. v)
+    end
 end
 
 ---------------------------------------------------------
