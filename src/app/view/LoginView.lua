@@ -12,7 +12,7 @@ function LoginView:onLoad()
     sp:onTouchEx('ended', function()
         -- self:close()
         self.Render:stopTimer('LoginTimer1')
-        Game.AudioCore:playMusic(3)
+        Game.AudioCore:stopMusic()
     end)
 
     self:initTimers()

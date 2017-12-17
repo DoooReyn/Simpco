@@ -3,14 +3,16 @@ local UserConfig = cc.UserDefault:getInstance()
 local strfmt     = string.format
 local kEffectKey = 'effect_enable'
 local kMusicKey  = 'music_enable'
+local kEffectVol = 'effect_volume'
+local kMusicVol  = 'music_volume'
 
 function AudioCore:ctor()
-    self.bgm    = {}
-    self.effect = {}
-    self.effectId  = -1
-    self.musicId   = -1
-    self.musicVol  = 100
-    self.effectVol = 100
+    self.bgm          = {}
+    self.effect       = {}
+    self.effectId     = -1
+    self.musicId      = -1
+    self.musicVol     = UserConfig:getIntegerForKey(kMusicVol,  60)
+    self.effectVol    = UserConfig:getIntegerForKey(kEffectVol, 60)
     self.isPlayMusic  = UserConfig:getBoolForKey(kMusicKey,  true)
     self.isPlayEffect = UserConfig:getBoolForKey(kEffectKey, true)
 end
@@ -26,18 +28,22 @@ end
 function AudioCore:setMusicVolume(vol)
     if self.musicVol == vol then return end
     self.musicVol = min(100, max(0, vol))
+    UserConfig:setIntegerForKey(kMusicVol, self.musicVol)
+    print('[AudioCore] setMusicVolume : ' .. vol)
 end
 
 function AudioCore:setEffectVolume(vol)
     if self.effectVol == vol then return end
     self.effectVol = min(100, max(0, vol))
+    UserConfig:setIntegerForKey(kEffectVol, self.effectVol)
+    print('[AudioCore] setEffectVolume : ' .. vol)
 end
 
 function AudioCore:setVolume(atype, playAudioId)
     if atype == 'music' then
-        ccexp.AudioEngine:setVolume(playAudioId, self.musicVol)
+        ccexp.AudioEngine:setVolume(playAudioId, self.musicVol * 0.01)
     elseif atype == 'effect' then
-        ccexp.AudioEngine:setVolume(playAudioId, self.effectVol)
+        ccexp.AudioEngine:setVolume(playAudioId, self.effectVol * 0.01)
     end
 end
 
@@ -54,6 +60,7 @@ function AudioCore:preload(audioId)
     local path = self:getAudioPath(audioId)
     if not path then return end
     ccexp.AudioEngine:preload(path) 
+    print('[AudioCore] preload : ' .. path)
 end
 
 function AudioCore:setPlayAudioId(atype, playAudioId)
@@ -129,6 +136,7 @@ function AudioCore:enableEffect(isenable)
     end
     self.isPlayEffect = isenable
     UserConfig:setBoolForKey(kEffectKey, self.isPlayEffect)
+    print('[AudioCore] enableEffect : ' .. tostring(self.isPlayEffect))
 end
 
 function AudioCore:enableMusic(isenable)
@@ -140,6 +148,7 @@ function AudioCore:enableMusic(isenable)
     end
     self.isPlayMusic = isenable
     UserConfig:setBoolForKey(kMusicKey, self.isPlayMusic)
+    print('[AudioCore] enableMusic : ' .. tostring(self.isPlayMusic))
 end
 
 return AudioCore
