@@ -46,6 +46,7 @@ function Game:initCores()
     Game.ViewCore     = require('app.core.ViewCore'):create()
     Game.TimerCore    = require('app.core.TimerCore'):create()
     Game.UIHelperCore = require('app.core.UIHelperCore'):create()
+    Game.LocaleCore   = require('app.core.LocaleCore'):create()
 end
 
 ------------------------------------------
@@ -55,6 +56,7 @@ function Game:start()
     -- 启动核心加载程序
     Game.UtilCore:load()
     Game.DataCore:load()  
+    Game.LocaleCore:load()
     Game.AudioCore:load()
     Game.EventCore:load()
     Game.NetCore:load()
