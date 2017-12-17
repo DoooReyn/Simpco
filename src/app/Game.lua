@@ -16,19 +16,19 @@ local ostime = os.time
 --
 local Game = class('Game')
 
----------------------------------------------------------
--- @desc: initialize work
--- 
 function Game:ctor()
     mkseed(ostime())
     cc.Director:getInstance():setDisplayStats(CC_SHOW_FPS)
 end
 
+------------------------------------------
+-- @desc : initialize Game Enviroment
+--
 function Game:initialize()
     self:initCores()
 end
 
----------------------------------------------------------
+------------------------------------------
 -- @desc: Load Game Core Module -> start
 -- 
 function Game:initCores()
@@ -42,7 +42,7 @@ function Game:initCores()
     Game.TimerCore   = require('app.timer.TimerCore'):create()
 end
 
----------------------------------------------------------
+------------------------------------------
 -- @desc: Control Game Running State -> start
 -- 
 function Game:start()
@@ -58,14 +58,14 @@ function Game:start()
     Game.ViewCore:loadView('LoginView')
 end
 
----------------------------------------------------------
+------------------------------------------
 -- @desc: Control Game Running State -> pause
 -- 
 function Game:pause()
 
 end
 
----------------------------------------------------------
+------------------------------------------
 -- @desc: Control Game Running State -> stop
 -- 
 function Game:stop()
@@ -79,42 +79,42 @@ function Game:stop()
     -- Game.TimerCore:unload()
 end
 
----------------------------------------------------------
+-------------------------------------------
 -- @desc: Control Game Running State -> restart
 -- 
 function Game:restart()
 
 end
 
----------------------------------------------------------
+-------------------------------------------
 -- @desc: Control Game Speed -> speedUp
 -- 
 function Game:speedUp()
 
 end
 
----------------------------------------------------------
+-------------------------------------------
 -- @desc: Control Game Speed -> speedDown
 -- 
 function Game:speedDown()
 
 end
 
----------------------------------------------------------
+-------------------------------------------
 -- @desc: Control Game Speed -> speedNormal
 -- 
 function Game:speedNormal()
 
 end
 
----------------------------------------------------------
+-------------------------------------------
 -- @desc: Listen Game Back To FG Event -> onReturnForeGround
 -- 
 function Game:onReturnForeGround()
 
 end
 
----------------------------------------------------------
+-------------------------------------------
 -- @desc: Control Enter BG Event -> onEnterBackGround
 -- 
 function Game:onEnterBackGround()
