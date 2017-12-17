@@ -14,4 +14,8 @@ function _M:load()
 
 end
 
+function _M:unload()
+
+end
+
 return _M

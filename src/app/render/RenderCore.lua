@@ -8,6 +8,10 @@ function _M:load()
 
 end
 
+function _M:unload()
+
+end
+
 function _M:loadRender(rtag)
     if not rtag then return nil end
     local r = self.renders[rtag]

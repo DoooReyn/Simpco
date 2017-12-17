@@ -27,6 +27,13 @@ function _M:load()
 end
 
 ---------------------------------------------------------
+-- @desc: 核心卸载
+-- 
+function _M:unload()
+    self:clearCache()
+end
+
+---------------------------------------------------------
 -- @desc: 初始化常量数据
 -- 
 function _M:initConstants()

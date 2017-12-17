@@ -28,6 +28,13 @@ function _M:load()
 end
 
 ---------------------------------------------------------
+-- @desc: Core unload function
+-- 
+function _M:unload()
+
+end
+
+---------------------------------------------------------
 -- @desc: 加载根节点
 -- 
 function _M:loadRootNodes()
