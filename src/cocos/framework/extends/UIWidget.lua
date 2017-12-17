@@ -28,7 +28,7 @@ local kScaleTime = 0.03
 local kScaleFact = 0.95
 
 function Widget:onTouch(callback)
-    local function scale_began()
+    local function startScale()
         if not self.disableScale then
             self:stopActionByTag(kScaleTag)
             self._bs = self:getScale()
@@ -38,7 +38,7 @@ function Widget:onTouch(callback)
         end
     end
 
-    local function scale_ended()
+    local function stopScale()
         if not self.disableScale then
             self:stopActionByTag(kScaleTag)
             local act = cc.ScaleTo:create(kScaleTime, self._bs)
@@ -46,24 +46,29 @@ function Widget:onTouch(callback)
             self:runAction(act)
         end
     end
+
+    local function playEffet()
+        if not self.disableAudio then
+            local effectId = self.effectId or 1
+            Game.AudioCore:playEffect(effectId)
+        end
+    end
     
     self:addTouchEventListener(function(sender, state)
         local event = {x = 0, y = 0}
         if state == 0 then
             event.name = "began"
-            scale_began()
+            startScale()
         elseif state == 1 then
             event.name = "moved"
         elseif state == 2 then
             event.name = "ended"
-            if not self.disableAudio then
-                local effectId = sender.effectId or 1
-                Game.AudioCore:playEffect(effectId)
-            end
-            scale_ended()
+            playEffet()
+            stopScale()
         else
             event.name = "cancelled"
-            scale_ended()
+            playEffet()
+            stopScale()
         end
         event.target = sender
         callback(event)
