@@ -10,10 +10,16 @@ function _M:initGlobals()
     require('app.utils.Globals')
 end
 
+------------------------------------------
+-- @desc : 核心加载
+--
 function _M:load()
 
 end
 
+------------------------------------------
+-- @desc : 核心卸载
+--
 function _M:unload()
 
 end

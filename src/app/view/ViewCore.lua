@@ -21,14 +21,14 @@ function _M:ctor()
 end
 
 ---------------------------------------------------------
--- @desc: Core load function
+-- @desc: 核心加载
 -- 
 function _M:load()
     self:loadRootNodes()
 end
 
 ---------------------------------------------------------
--- @desc: Core unload function
+-- @desc: 核心卸载
 -- 
 function _M:unload()
 

@@ -12,10 +12,16 @@ function EventCore:ctor()
     self.listenerRecords = {}
 end
 
+----------------------------------------------------
+-- @desc : 核心加载
+--
 function EventCore:load()
     
 end
 
+----------------------------------------------------
+-- @desc : 核心卸载
+--
 function EventCore:unload()
     self:cleanup()
 end

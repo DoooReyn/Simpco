@@ -8,9 +8,10 @@
 ------------------------------------------
 -- local variables
 --
-local mkseed = math.randomseed
-local ostime = os.time
-local strfmt = string.format
+local mkseed   = math.randomseed
+local ostime   = os.time
+local strfmt   = string.format
+local director = cc.Director:getInstance()
 
 ------------------------------------------
 -- Class Game
@@ -19,8 +20,8 @@ local Game = class('Game')
 
 function Game:ctor()
     mkseed(ostime())
-    cc.Director:getInstance():setDisplayStats(CC_SHOW_FPS)
-    self:updateFPS(28)
+    self:showFPS(CC_SHOW_FPS)
+    self:updateFPS(60)
 end
 
 ------------------------------------------
@@ -36,14 +37,14 @@ end
 -- @desc: Load Game Core Module -> start
 -- 
 function Game:initCores()
-    Game.UtilCore    = require('app.utils.UtilCore'):create()
-    Game.DataCore    = require('app.data.DataCore'):create()
-    Game.AudioCore   = require('app.audio.AudioCore'):create()
-    Game.EventCore   = require('app.event.EventCore'):create()
-    Game.NetCore     = require('app.network.NetCore'):create()
-    Game.RenderCore  = require('app.render.RenderCore'):create()
-    Game.ViewCore    = require('app.view.ViewCore'):create()
-    Game.TimerCore   = require('app.timer.TimerCore'):create()
+    Game.UtilCore   = require('app.utils.UtilCore'):create()
+    Game.DataCore   = require('app.data.DataCore'):create()
+    Game.AudioCore  = require('app.audio.AudioCore'):create()
+    Game.EventCore  = require('app.event.EventCore'):create()
+    Game.NetCore    = require('app.network.NetCore'):create()
+    Game.RenderCore = require('app.render.RenderCore'):create()
+    Game.ViewCore   = require('app.view.ViewCore'):create()
+    Game.TimerCore  = require('app.timer.TimerCore'):create()
 end
 
 ------------------------------------------
@@ -77,7 +78,11 @@ end
 
 
 function Game:updateFPS(fps)
-    cc.Director:getInstance():setAnimationInterval(1.0/fps)
+    director:setAnimationInterval(1.0/fps)
+end
+
+function Game:showFPS(isshow)
+    director:setDisplayStats(isshow)
 end
 
 ------------------------------------------

@@ -32,14 +32,14 @@ function AudioCore:ctor()
 end
 
 ------------------------------------------
--- @desc : first load AudioCore
+-- @desc : 核心加载
 --
 function AudioCore:load()
     self:playMusicInSet(table.range(1,3))
 end
 
 ------------------------------------------
--- @desc : unload AudioCore
+-- @desc : 核心卸载
 --
 function AudioCore:unload()
     ccexp.AudioEngine:uncacheAll()

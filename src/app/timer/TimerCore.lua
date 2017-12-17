@@ -10,9 +10,8 @@
 --
 local strfmt    = string.format
 
-
 ------------------------------------------
--- Class TimerCore
+-- @desc : Class TimerCore
 --
 local TimerCore = class('TimerCore')
 
@@ -22,21 +21,21 @@ function TimerCore:ctor()
 end
 
 ------------------------------------------
--- @desc : load TimerCore
+-- @desc : 核心加载
 --
 function TimerCore:load()
 
 end
 
 ------------------------------------------
--- @desc : unload TimerCore
+-- @desc : 核心卸载
 --
 function TimerCore:unload()
     self:stopAllTimer()
 end
 
 ------------------------------------------
--- @desc : find timer
+-- @desc : 获取定时器
 -- @param : timer - timer name
 --
 function TimerCore:findTimer(timer)
@@ -47,7 +46,7 @@ function TimerCore:findTimer(timer)
 end
 
 ------------------------------------------
--- @desc : start timer
+-- @desc : 开启定时器
 -- @param : timer - timer name
 -- @param : callfn - timer callback
 -- @param : interval - timer interval
@@ -68,7 +67,7 @@ function TimerCore:startTimer(timer, callfn, interval, isonce)
 end
 
 ------------------------------------------
--- @desc : stop timer
+-- @desc : 停止定时器
 -- @param : timer - timer name
 --
 function TimerCore:stopTimer(timer)
@@ -79,7 +78,7 @@ function TimerCore:stopTimer(timer)
 end
 
 ------------------------------------------
--- @desc : stop all timer
+-- @desc : 停止所有定时器
 --
 function TimerCore:stopAllTimer()
     table.foreach(self.timers, function(timerId, timer)
