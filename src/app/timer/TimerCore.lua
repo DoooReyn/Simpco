@@ -9,6 +9,11 @@
 -- local variables
 --
 local strfmt    = string.format
+
+
+------------------------------------------
+-- Class TimerCore
+--
 local TimerCore = class('TimerCore')
 
 function TimerCore:ctor()
@@ -16,10 +21,24 @@ function TimerCore:ctor()
     self.scheduler = cc.Director:getInstance():getScheduler()
 end
 
+------------------------------------------
+-- @desc : load TimerCore
+--
 function TimerCore:load()
 
 end
 
+------------------------------------------
+-- @desc : unload TimerCore
+--
+function TimerCore:unload()
+    self:stopAllTimer()
+end
+
+------------------------------------------
+-- @desc : find timer
+-- @param : timer - timer name
+--
 function TimerCore:findTimer(timer)
     if self.timers[timer] then
         return true
@@ -27,6 +46,13 @@ function TimerCore:findTimer(timer)
     return false
 end
 
+------------------------------------------
+-- @desc : start timer
+-- @param : timer - timer name
+-- @param : callfn - timer callback
+-- @param : interval - timer interval
+-- @param : isonce - call timer once or not 
+--
 function TimerCore:startTimer(timer, callfn, interval, isonce)
     if self:findTimer(timer) then
         self:stopTimer(timer)
@@ -41,6 +67,10 @@ function TimerCore:startTimer(timer, callfn, interval, isonce)
     print(strfmt('[TimerCore] %s is running.', timer))
 end
 
+------------------------------------------
+-- @desc : stop timer
+-- @param : timer - timer name
+--
 function TimerCore:stopTimer(timer)
     if not self:findTimer(timer) then return end
     self.scheduler:unscheduleScriptEntry(self.timers[timer])
@@ -48,6 +78,9 @@ function TimerCore:stopTimer(timer)
     print(strfmt('[TimerCore] %s is stop.', timer))
 end
 
+------------------------------------------
+-- @desc : stop all timer
+--
 function TimerCore:stopAllTimer()
     table.foreach(self.timers, function(timerId, timer)
         self.scheduler:unscheduleScriptEntry(timerId)
