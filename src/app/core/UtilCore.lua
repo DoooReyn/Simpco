@@ -6,7 +6,6 @@ end
 
 function _M:initGlobals()
     require('app.utils.extend.TableExt')
-    require('app.utils.extend.UIWidgetExt')
     require('app.utils.Globals')
 end
 

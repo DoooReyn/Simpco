@@ -37,14 +37,15 @@ end
 -- @desc: 初始化核心
 -- 
 function Game:initCores()
-    Game.UtilCore   = require('app.core.UtilCore'):create()
-    Game.DataCore   = require('app.core.DataCore'):create()
-    Game.AudioCore  = require('app.core.AudioCore'):create()
-    Game.EventCore  = require('app.core.EventCore'):create()
-    Game.NetCore    = require('app.core.NetCore'):create()
-    Game.RenderCore = require('app.core.RenderCore'):create()
-    Game.ViewCore   = require('app.core.ViewCore'):create()
-    Game.TimerCore  = require('app.core.TimerCore'):create()
+    Game.UtilCore     = require('app.core.UtilCore'):create()
+    Game.DataCore     = require('app.core.DataCore'):create()
+    Game.AudioCore    = require('app.core.AudioCore'):create()
+    Game.EventCore    = require('app.core.EventCore'):create()
+    Game.NetCore      = require('app.core.NetCore'):create()
+    Game.RenderCore   = require('app.core.RenderCore'):create()
+    Game.ViewCore     = require('app.core.ViewCore'):create()
+    Game.TimerCore    = require('app.core.TimerCore'):create()
+    Game.UIHelperCore = require('app.core.UIHelperCore'):create()
 end
 
 ------------------------------------------
@@ -56,10 +57,11 @@ function Game:start()
     Game.DataCore:load()  
     Game.AudioCore:load()
     Game.EventCore:load()
-    Game.NetCore:load() 
+    Game.NetCore:load()
     Game.RenderCore:load()
     Game.ViewCore:load()
     Game.TimerCore:load()
+    Game.UIHelperCore:load()
     
     --注册系统事件
     self:registerSystemEvent()
