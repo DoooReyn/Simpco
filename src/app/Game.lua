@@ -21,6 +21,7 @@ local Game = class('Game')
 -- 
 function Game:ctor()
     mkseed(ostime())
+    cc.Director:getInstance():setDisplayStats(CC_SHOW_FPS)
 end
 
 function Game:initialize()
