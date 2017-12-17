@@ -34,7 +34,7 @@ function Game:initialize()
 end
 
 ------------------------------------------
--- @desc: Load Game Core Module -> start
+-- @desc: 初始化核心
 -- 
 function Game:initCores()
     Game.UtilCore   = require('app.core.UtilCore'):create()
@@ -51,6 +51,7 @@ end
 -- @desc: Control Game Running State -> start
 -- 
 function Game:start()
+    -- 启动核心加载程序
     Game.UtilCore:load()
     Game.DataCore:load()  
     Game.AudioCore:load()
@@ -59,8 +60,11 @@ function Game:start()
     Game.RenderCore:load()
     Game.ViewCore:load()
     Game.TimerCore:load()
+    
+    --注册系统事件
     self:registerSystemEvent()
     
+    --挂载第一个视图
     Game.ViewCore:loadView('LoginView')
 end
 
