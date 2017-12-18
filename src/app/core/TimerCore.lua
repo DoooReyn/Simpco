@@ -68,11 +68,19 @@ end
 
 ------------------------------------------
 -- @desc : 停止定时器
+-- @param : timerId - timer ID
+--
+function TimerCore:unscheduleTimerById(timerId)
+    self.scheduler:unscheduleScriptEntry(timerId)
+end
+
+------------------------------------------
+-- @desc : 停止定时器
 -- @param : timer - timer name
 --
 function TimerCore:stopTimer(timer)
     if not self:findTimer(timer) then return end
-    self.scheduler:unscheduleScriptEntry(self.timers[timer])
+    self:unscheduleTimerById(self.timers[timer])
     self.timers[timer] = nil
     print(strfmt('[TimerCore] %s is stop.', timer))
 end
@@ -82,9 +90,10 @@ end
 --
 function TimerCore:stopAllTimer()
     table.foreach(self.timers, function(timerId, timer)
-        self.scheduler:unscheduleScriptEntry(timerId)
+        self:unscheduleTimerById(timerId)
         self.timers[timer] = nil
     end)
+    print('[TimerCore] All timer is stop.')
 end
 
 return TimerCore
