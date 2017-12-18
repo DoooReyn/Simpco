@@ -1,18 +1,35 @@
 
+------------------------------------------------------------------------------------------
+---- Name   : Colorify
+---- Desc   : 色值转换工具
+---- Date   : 2017/12/18
+---- Author : Reyn - jl88744653@gmail.com
+------------------------------------------------------------------------------------------
+
+---------------------------------------------------------
+-- @desc : 局域变量
+-- 
 local rgb      = cc.c3b
 local rgba     = cc.c4b
 local strupper = string.upper
 local strsub   = string.sub
 local strlen   = string.len
 local strfmt   = string.format
-local defRGB   = rgb(255,255,255)
-local defRGBA  = rgba(255,255,255,255)
-local convert  = cc.convertColor
-local mround   = math.round
+local defRGB   = cc.c3b(255,255,255)
+local defRGBA  = cc.c4b(255,255,255,255)
+local foreach  = table.foreach
 
 
+---------------------------------------------------------
+-- @desc : Colorify
+-- 
 local Colorify = {}
 
+---------------------------------------------------------
+-- @desc : 检查十六进制色值是否有效
+-- @param : hex - 十六进制色值
+-- @param : num - 6/8 bit
+-- 
 local function checkHex(hex, num)
     hex = strupper(hex)
     local len = strlen(hex)
@@ -29,7 +46,10 @@ local function checkHex(hex, num)
     return true, c
 end
 
---[[十六进制颜色值转换为RGB格式]]--
+---------------------------------------------------------
+-- @desc : 十六进制色值转RGB
+-- @param : hex - 十六进制色值
+-- 
 function Colorify:hex2c3b(hex)
     local ok, ct = checkHex(hex, 6)
     if not ok then 
@@ -38,7 +58,10 @@ function Colorify:hex2c3b(hex)
     return ct
 end
 
---[[十六进制颜色值转换为RGBA格式]]--
+---------------------------------------------------------
+-- @desc : 十六进制色值转RGBA
+-- @param : hex - 十六进制色值
+-- 
 function Colorify:hex2c4b(hex)
     local ok, ct = checkHex(hex, 8)
     if not ok then 
@@ -47,16 +70,22 @@ function Colorify:hex2c4b(hex)
     return ct
 end
 
---[[十六进制颜色值转换为RGBA浮点数格式]]--
+---------------------------------------------------------
+-- @desc : 十六进制色值转RGBA浮点数
+-- @param : hex - 十六进制色值
+-- 
 function Colorify:hex2c4f(hex)
     local c4b = self:hex2c4b(hex)
-    table.foreach(c4b, function(v, k)
+    foreach(c4b, function(v, k)
         c4b[k]= tonumber(strfmt("%.2f", v * 1.0 / 255))
     end)
     return c4b
 end
 
---[[十进制颜色值转换为十六进制格式]]--
+---------------------------------------------------------
+-- @desc : RGB(A)转十六进制色值
+-- @param : color - RGB(A)色值
+-- 
 function Colorify:color2hex(color)
     color.r = color.r or 255
     color.g = color.g or 255
@@ -66,24 +95,6 @@ function Colorify:color2hex(color)
         c = c .. strfmt('%X', color.a)
     end
     return c
-end
-
-function Colorify:testcase()
-    print('[Colorify] c3b')
-    dump(Colorify:hex2c3b('987654'),  '987654')
-    dump(Colorify:hex2c3b('abcdf1'),  'abcdf1')
-    
-    print('[Colorify] c4b')
-    dump(Colorify:hex2c4b('12345678'),  '12345678')
-    dump(Colorify:hex2c4b('abcdf123'),  'abcdf123')
-
-    print('[Colorify] c4f')
-    dump(Colorify:hex2c4f('12345678'),  '12345678')
-    dump(Colorify:hex2c4f('abcdf123'),  'abcdf123')
-
-    print('[Colorify] hex')
-    print('100,120,144', Colorify:color2hex(cc.c3b(100,120,144)))
-    print('200,220,244,188', Colorify:color2hex(cc.c4b(200,220,244,254)))
 end
 
 return Colorify
