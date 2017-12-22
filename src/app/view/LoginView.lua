@@ -5,28 +5,24 @@ function LoginView:init()
 end
 
 function LoginView:onLoad()
-    local sp = ccui.ImageView:create('HelloWorld.png')
-    sp:setPosition(display.center)
-    sp:addTo(self, 10)
-    sp:setTouchEnabled(true)
-    sp:onTouchEx('ended', function()
+    local emitter = require('app.uihelper.emitter.Emitter'):create()
+    emitter:setPosition(cc.p(display.cx, 0))
+    emitter:addTo(self, 20)
+    emitter:start()
+        
+    local text = ccui.Text:create()
+    text:setString("点我开始")
+    text:setFontSize(48)
+    text:setPosition(display.center)
+    text:addTo(self, 10)
+    text:setTouchEnabled(true)
+    text:onTouchEx('ended', function()
+        -- Game.ViewCore:loadView()
         -- self:close()
-        self.Render:stopTimer('LoginTimer1')
-        Game.AudioCore:stopMusic()
+        print('开始游戏')
+        -- text:removeFromParent()
+        emitter:makeAtom(5)
     end)
-
-    self:initTimers()
-end
-
-function LoginView:initTimers()
-    self.Render:startTimer('LoginTimer1', function(dt)
-        print('LoginTimer1', dt)
-    end, 0.5, false)
-    
-    self.Render:startTimer('LoginTimer2', function(dt)
-        print('LoginTimer2', dt)
-        self.Render:stopAllTimers()
-    end, 5, true)
 end
 
 return LoginView
